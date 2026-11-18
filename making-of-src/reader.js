@@ -1,6 +1,7 @@
 'use strict';
 (() => {
   const byId=id=>document.getElementById(id);
+  const heroMotion=byId('poster').querySelector('.hero-motion');
   const sceneKeys=['tear','fold','bank','peel','art','detail'];
   const times={tear:37/60,fold:632/60,bank:887/60,peel:1286/60};
   const headings={tear:'tear',fold:'fold',bank:'bank',peel:'peel',art:'artTitle',detail:'detailTitle'};
@@ -123,12 +124,12 @@
   function drawScore(){
     const c=byId('waveplot'),g=c.getContext('2d'),w=c.width,h=c.height;
     const x=t=>t/26.5*(w-1);
-    g.fillStyle='#e3dcf2';g.fillRect(0,0,w,h);
-    for(const beat of PLOTS.beats){g.fillStyle='#705b89';g.fillRect(x(beat),h-14,2,14);}
+    g.fillStyle='#f1f4f4';g.fillRect(0,0,w,h);
+    for(const beat of PLOTS.beats){g.fillStyle='#829699';g.fillRect(x(beat),h-14,2,14);}
     const amp=PLOTS.amplitude,ampMax=Math.max(...amp),step=w/amp.length,mid=(h-10)/2;
     amp.forEach((a,i)=>{
       const extent=a/ampMax*(mid-5);
-      g.fillStyle='#725ba2';g.fillRect(i*step,mid-extent,Math.max(1,step-0.6),Math.max(1,extent*2));
+      g.fillStyle='#376a71';g.fillRect(i*step,mid-extent,Math.max(1,step-0.6),Math.max(1,extent*2));
     });
     for(const cue of ['inkSnap','coil','crest']){
       const px=x(PLOTS.cues[cue]);g.fillStyle='#694317';g.fillRect(px-3,0,7,h);g.fillStyle='#ffcf4c';g.fillRect(px-1,0,3,h);
@@ -136,6 +137,16 @@
     }
   }
   drawRegions();drawScore();
+  if(!isExport && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const observer=new IntersectionObserver(([entry])=>{
+      if(entry.isIntersecting){
+        if(!heroMotion.src)heroMotion.src=heroMotion.dataset.src;
+        heroMotion.muted=true;
+        heroMotion.play().then(()=>heroMotion.classList.add('playing')).catch(()=>{});
+      }else{heroMotion.pause();}
+    });
+    observer.observe(heroMotion);
+  }
   if(isExport)reader.style.width='800px';
   new ResizeObserver(resize).observe(reader);localize();
   window.posterReady=Promise.all([document.fonts.ready,...[...document.querySelectorAll('article img')].map(i=>i.decode())]).then(()=>{resize();return true;});

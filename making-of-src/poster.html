@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" href="data:,"><meta name="author" content="Andy Woohoo"><meta name="theme-color" content="#f8fafc"><title>The Sun, Again / Riptide — Making of</title>
+<link rel="icon" href="data:,"><meta name="author" content="Andy Woohoo"><meta name="theme-color" content="#181818"><meta name="description" content="How Andy Woohoo flew a swallow through three paintings with Codex and ImageGen. Six illustrated notes on the shaders, rig, painting prompts and 4K render."><meta property="og:title" content="Riptide — Making of"><meta property="og:image" content="https://andy-huang-szu.github.io/riptide-flight/docs/cover.jpg"><title>The Sun, Again / Riptide — Making of</title>
 <style>@@CSS@@</style></head>
 <body>
 <nav class="reader" aria-label="Poster controls">
-  <div class="langs"><button id="en" aria-pressed="true" lang="en">EN</button><button id="zh" aria-pressed="false" lang="zh-CN">中文</button></div>
+  <a class="wordmark" href="#poster" aria-label="Riptide, first sheet">Riptide</a><div class="langs"><button id="en" aria-pressed="true" lang="en">EN</button><span aria-hidden="true">/</span><button id="zh" aria-pressed="false" lang="zh-CN">中文</button></div>
   <select id="chapter-nav" aria-label="Jump to a breakdown sheet"><option value="0" data-zh="总流程">Workflow</option><option value="1" data-zh="三维几何">Geometry</option><option value="2" data-zh="飞行绑定">Flight rig</option><option value="3" data-zh="材质精度">4K textures</option><option value="4" data-zh="实际提示词">ImageGen prompt</option><option value="5" data-zh="时间与导出">Rendering</option><option value="repo" data-zh="GitHub 源码">GitHub source ↗</option></select>
   <div class="actions"><a class="source-link" href="https://github.com/Andy-Huang-SZU/riptide-flight" data-zh="源码">Source</a><button id="zoom" data-t="zoom">Zoom in</button><a id="download" download="Riptide-making-of.png" href="@@DOWNLOAD@@" data-t="save">Save image</a><a href="@@FILM@@" data-t="watch">Play film</a></div>
 </nav>
 <main>
   <div id="scroll-area"><div id="paper-size"><div id="book"><article class="poster" id="poster" aria-labelledby="title">
-    <div class="folio cover-folio"><b>RIPTIDE <span>/</span> THE SUN, AGAIN</b><span class="page-num">01 <i>/ 06</i></span></div>
+    <div class="cover-folio">THE SUN, AGAIN</div><span class="page-num">01 <i>/ 06</i></span>
     <header class="hero">
       <img id="hero-image" src="@@WAVE@@" alt="" width="1920" height="1080" draggable="false">
-      <div class="hero-shade"></div>
+      <video class="hero-motion" muted loop playsinline aria-hidden="true" data-src="@@LOOP@@"></video><div class="hero-shade"></div>
       <div class="hero-copy">
 
-        <h1 id="title"><span data-t="title1">I built a tunnel</span><em data-t="title2">out of paint.</em></h1>
+        <h1 id="title" data-zh="裂潮">Riptide</h1><p class="standfirst" data-zh="我用三幅画，搭了一条燕子能飞进去的隧道。">I built a tunnel out of three paintings.</p>
         <div class="hero-meta"><span>26.5 s</span><b></b><span>4K / 60 fps</span></div>
       </div>
     </header>

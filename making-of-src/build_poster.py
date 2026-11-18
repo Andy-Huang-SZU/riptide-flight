@@ -19,18 +19,15 @@ ASSETS = {
 def build():
     target = ROOT / 'making-of.html'
     text = (SRC / 'poster.html').read_text().replace('@@PAGES@@', (SRC / 'technical.html').read_text())
-    css = '\n'.join((SRC / item).read_text() for item in ['poster.css', 'sheets.css', 'guide.css', 'editorial.css'])
+    css = (SRC / 'film-guide.css').read_text()
     def asset(path, mime=None):
         return ('assets/' if path.parent == REPO / 'assets' else 'making-of-src/art/') + path.name
-    for token, font in [('DISPLAY', ART / 'bricolage.woff2'), ('HAND', ART / 'balsamiq-bold.woff2'), ('SERIF', ART / 'instrument-serif-regular.woff2'),
-                        ('ITALIC', ART / 'instrument-serif-italic.woff2'),
-                        ('SANS', REPO / 'assets/instrument-sans.woff2')]:
-        css = css.replace('@@' + token + '@@', asset(font, 'font/woff2'))
+    css = css.replace('@@MANROPE@@', asset(ART / 'manrope.woff2', 'font/woff2'))
     pictures = {name: asset(ART / ('frame-' + shot + '.webp')) for name, shot in
                 [('tear', 'tear'), ('fold', 'print'), ('bank', 'rift'), ('peel', 'return')]}
     pictures['plates'] = [asset(ART / ('plate-' + key + '.webp')) for key in ('dawn', 'strata', 'tide')]
     values = {key: asset(ART / filename) for key, filename in ASSETS.items()}
-    values.update(CSS=css, JS=(SRC / 'reader.js').read_text(), COPY=(SRC / 'copy.json').read_text(),
+    values.update(LOOP='making-of-src/art/flight-loop.mp4', CSS=css, JS=(SRC / 'reader.js').read_text(), COPY=(SRC / 'copy.json').read_text(),
                   PLOTS=(SRC / 'plot-data.json').read_text(), EXTRA=json.dumps(pictures),
                   DOWNLOAD='https://github.com/Andy-Huang-SZU/riptide-flight/releases/download/v1.0.0/Riptide-making-of.png',
                   FILM='index.html')

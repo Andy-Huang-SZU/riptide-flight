@@ -8,8 +8,8 @@
     "搭了一条隧道。"
   ],
   "section": [
-    "Inside the 3D set",
-    "拆开这条隧道"
+    "The flight path",
+    "飞行路线"
   ],
   "tear": [
     "Tear the sky",
@@ -108,20 +108,20 @@
     "工程素材"
   ],
   "zoom": [
-    "Larger text",
+    "A+",
     "大字"
   ],
   "fit": [
-    "Standard text",
-    "标准字"
+    "A−",
+    "标准"
   ],
   "save": [
-    "Save PNG",
-    "保存长图"
+    "PNG ↓",
+    "PNG ↓"
   ],
   "watch": [
-    "Play film",
-    "播放作品"
+    "Play film ↗",
+    "播放 ↗"
   ],
   "close": [
     "Close",

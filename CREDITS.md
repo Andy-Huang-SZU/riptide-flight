@@ -16,9 +16,7 @@ The original project code, source paintings, generated cutaway, procedural bird 
 | --- | --- |
 | Three.js r186 and GLTFLoader | [MIT](licenses/three-LICENSE.txt) |
 | Mediabunny 1.66.0, used for export | [MPL-2.0](licenses/mediabunny-LICENSE.txt) |
+| Manrope | [SIL OFL](licenses/manrope-OFL.txt) |
 | Instrument Sans | [SIL OFL](licenses/instrument-sans-OFL.txt) |
-| Bricolage Grotesque | [SIL OFL](licenses/bricolage-OFL.txt) |
-| Balsamiq Sans | [SIL OFL](licenses/balsamiq-OFL.txt) |
-| Instrument Serif | [SIL OFL](licenses/instrument-serif-OFL.txt) |
 
 The optional texture restoration tool uses the upstream Real-ESRGAN general-x4v3 checkpoint. The script checks the published file against the recorded SHA-256 digest. [Upstream release](https://github.com/xinntao/Real-ESRGAN/releases/tag/v0.2.5.0)

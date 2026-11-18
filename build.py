@@ -26,7 +26,7 @@ def build(standalone,studio=None):
         page=page.replace(key,replacement)
     tex={k:uri(k+'-master.jpg') if standalone else {'full':uri(k+'-master.jpg'),'screen':uri('web/'+k+'.webp')} for k in ('dawn','strata','tide')}
     tex['micro']=uri('material-relief.png')
-    slots={'FONT':uri('instrument-sans.woff2'),'AUDIO':uri(studio/'score.mp3' if studio else 'score.mp3'),'RIG':uri(studio/'swallow-tripo-rig.glb' if studio else 'studio-swallow.glb'),
+    slots={'HOLD':uri(ROOT/'docs/cover.jpg') if standalone else 'docs/cover.jpg','FONT':uri('instrument-sans.woff2'),'AUDIO':uri(studio/'score.mp3' if studio else 'score.mp3'),'RIG':uri(studio/'swallow-tripo-rig.glb' if studio else 'studio-swallow.glb'),
            'SCORE':(ROOT/'beat-grid.json').read_text(),'ASSETS':json.dumps(tex)}
     for k,s in zip(TOKENS,SCRIPTS):
         if standalone:slots[k]=(SRC/(s+'.js')).read_text()
