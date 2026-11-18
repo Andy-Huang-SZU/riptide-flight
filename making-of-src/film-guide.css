@@ -1,5 +1,5 @@
-@font-face{font-family:Manrope;src:url(@@MANROPE@@) format("woff2");font-weight:200 800;font-display:swap}
-:root{--font:Manrope,"PingFang SC","Microsoft YaHei",sans-serif;--ink:#171b1d;--text:#30393c;--muted:#516166;--accent:#28666c;--paper:#fff;--mono:ui-monospace,"SFMono-Regular",Menlo,monospace}
+@font-face{font-family:Geist;src:url(@@GEIST@@) format("woff2");font-weight:100 900;font-display:swap}
+:root{--font:Geist,"PingFang SC","Microsoft YaHei",sans-serif;--ink:#171b1d;--text:#30393c;--muted:#516166;--accent:#28666c;--paper:#fff;--mono:ui-monospace,"SFMono-Regular",Menlo,monospace}
 *{box-sizing:border-box}
 html{background:var(--paper);color:var(--ink);font:400 16px/1.4 var(--font);text-size-adjust:100%}
 body,h1,h2,p,figure,blockquote{margin:0}
@@ -44,7 +44,7 @@ img{display:block;max-width:100%}
 .route{display:grid;grid-template-rows:44px 243px 108px}
 .route-header{padding:13px 29px 0}
 .route h2{font-size:24px;font-weight:630;line-height:1;letter-spacing:-.05em}
-.model{overflow:hidden;width:100%;background:#f5e8d8}
+.model{overflow:hidden;width:100%;background:#fff}
 .model img{width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .stations{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding:13px 29px 0}
 .station{text-align:left;align-self:start}
@@ -96,7 +96,7 @@ img{display:block;max-width:100%}
 .small-view figcaption>b{font-size:18px}.small-view figcaption>span{font-size:16px}
 .birdcard .math-note code{font-size:22px}
 .bird-bottom figure>img{height:145px}
-.bird-bottom figure:first-child>img{object-fit:contain;background:#f5e9d7}
+.bird-bottom figure:first-child>img{object-fit:contain;background:#fff}
 .compare-proof{text-align:left}
 .compare-proof .crops{display:grid;grid-template-columns:1fr 1fr;gap:5px;height:190px}
 .crops>div{position:relative;min-width:0;overflow:hidden}

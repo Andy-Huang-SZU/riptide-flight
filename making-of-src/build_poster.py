@@ -22,7 +22,7 @@ def build():
     css = (SRC / 'film-guide.css').read_text() + (SRC / 'guide-layout.css').read_text()
     def asset(path, mime=None):
         return ('assets/' if path.parent == REPO / 'assets' else 'making-of-src/art/') + path.name
-    css = css.replace('@@MANROPE@@', asset(ART / 'manrope.woff2', 'font/woff2'))
+    css = css.replace('@@GEIST@@', asset(ART / 'geist.woff2', 'font/woff2'))
     pictures = {name: asset(ART / ('frame-' + shot + '.webp')) for name, shot in
                 [('tear', 'tear'), ('fold', 'print'), ('bank', 'rift'), ('peel', 'return')]}
     pictures['plates'] = [asset(ART / ('plate-' + key + '.webp')) for key in ('dawn', 'strata', 'tide')]

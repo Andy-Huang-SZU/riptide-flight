@@ -7,7 +7,7 @@ function captureTechnical(name){
   if(name==='stamps'){
     const {data,width,height}=art.stamps.image,w=width/4;
     const display=canvas(1440,286),ctx=display.getContext('2d');
-    ctx.fillStyle='#f5e9d7';ctx.fillRect(0,0,display.width,display.height);
+    ctx.fillStyle='#ffffff';ctx.fillRect(0,0,display.width,display.height);
     const tile=canvas(w,height),tx=tile.getContext('2d');
     for(let j=0;j<4;j++){
       const im=tx.createImageData(w,height),ink=j%2?[166,61,38]:[30,55,65];

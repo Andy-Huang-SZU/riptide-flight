@@ -1,5 +1,13 @@
 # Cutaway illustration
 
+The final guide uses an alpha cutout so the painted object sits directly on the white page.
+
+### Transparent-background edit prompt
+
+Edit target: the attached single panoramic technical cutaway maquette from the film Riptide. Deliver exactly the existing object isolated on transparent alpha (RGBA) for an entirely pure white web page. This is a precision background removal. Keep the full existing panorama, torn red sun print on the left, all woodcut gates and slit, the tiny flying swallow, the entire hollow blue and gold wave and its two wispy tips at right, all their relative positions, colours and intricate painterly detail. Remove all cream/buff/yellow paper visibly surrounding the silhouette and visible through openings, including the center of the curl. The backdrop must have true zero alpha, with no paper tint and no drawn backdrop. Retain fine semi-transparent antialiasing at the outline and at most a tiny neutral soft contact shadow, no colored floor. Fill most of the panoramic frame, keep generous clarity and 2–3% breathing room at the outermost extremities, all subjects in full. Do not add text, additional objects, logos, border, new lighting, or change the artwork style. The sole deliverable is the unlettered cut-out illustration.
+
+### Original illustration prompt
+
 Generated with the built-in ImageGen tool. Four references were frames from the actual film at 0.00, 8.85, 14.78 and 17.17 seconds. The photograph-like cutaway illustrates the scene layout. The film stills, texture patches, and before-and-after crops in the poster come from the production itself.
 
 Use case: infographic-diagram

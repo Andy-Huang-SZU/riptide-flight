@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="data:,"><meta name="author" content="Andy Woohoo"><meta name="theme-color" content="#181818"><meta name="description" content="How Andy Woohoo flew a swallow through three paintings with Codex and ImageGen. Six illustrated notes on the shaders, rig, painting prompts and 4K render."><meta property="og:title" content="Riptide — Making of"><meta property="og:image" content="https://andy-huang-szu.github.io/riptide-flight/docs/cover.jpg"><title>The Sun, Again / Riptide — Making of</title>
-<style>@font-face{font-family:Manrope;src:url(making-of-src/art/manrope.woff2) format("woff2");font-weight:200 800;font-display:swap}
-:root{--font:Manrope,"PingFang SC","Microsoft YaHei",sans-serif;--ink:#171b1d;--text:#30393c;--muted:#516166;--accent:#28666c;--paper:#fff;--mono:ui-monospace,"SFMono-Regular",Menlo,monospace}
+<style>@font-face{font-family:Geist;src:url(making-of-src/art/geist.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--font:Geist,"PingFang SC","Microsoft YaHei",sans-serif;--ink:#171b1d;--text:#30393c;--muted:#516166;--accent:#28666c;--paper:#fff;--mono:ui-monospace,"SFMono-Regular",Menlo,monospace}
 *{box-sizing:border-box}
 html{background:var(--paper);color:var(--ink);font:400 16px/1.4 var(--font);text-size-adjust:100%}
 body,h1,h2,p,figure,blockquote{margin:0}
@@ -47,7 +47,7 @@ img{display:block;max-width:100%}
 .route{display:grid;grid-template-rows:44px 243px 108px}
 .route-header{padding:13px 29px 0}
 .route h2{font-size:24px;font-weight:630;line-height:1;letter-spacing:-.05em}
-.model{overflow:hidden;width:100%;background:#f5e8d8}
+.model{overflow:hidden;width:100%;background:#fff}
 .model img{width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .stations{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding:13px 29px 0}
 .station{text-align:left;align-self:start}
@@ -99,7 +99,7 @@ img{display:block;max-width:100%}
 .small-view figcaption>b{font-size:18px}.small-view figcaption>span{font-size:16px}
 .birdcard .math-note code{font-size:22px}
 .bird-bottom figure>img{height:145px}
-.bird-bottom figure:first-child>img{object-fit:contain;background:#f5e9d7}
+.bird-bottom figure:first-child>img{object-fit:contain;background:#fff}
 .compare-proof{text-align:left}
 .compare-proof .crops{display:grid;grid-template-columns:1fr 1fr;gap:5px;height:190px}
 .crops>div{position:relative;min-width:0;overflow:hidden}
@@ -157,10 +157,10 @@ html.export .reader{display:none}
 html.export #scroll-area{width:800px;max-width:none;overflow:visible}
 html.export .hero-motion{display:none}
 /* The original guide uses a slim chapter bar, a title, then a single stack of illustrated sections. */
-:root{--ink:#20262d;--text:#39444b;--muted:#5d6970;--accent:#28627a;--paper:#fff;--border:#dfe5e7;--canvas:#f6f8f8;--radius:8px}
+:root{--ink:#20262d;--text:#39444b;--muted:#5d6970;--accent:#28627a;--paper:#fff;--border:#dfe5e7;--canvas:#fff;--radius:8px}
 html{background:var(--canvas)}
 .page{width:100%;margin:0 auto}
-.reader{position:sticky;top:0;z-index:5;max-width:1216px;gap:16px;min-height:60px;margin:0 auto;padding:0 32px;background:#f6f8f8f5;color:var(--ink);backdrop-filter:blur(9px)}
+.reader{position:sticky;top:0;z-index:5;max-width:1216px;gap:16px;min-height:60px;margin:0 auto;padding:0 32px;background:#fffffff5;color:var(--ink);backdrop-filter:blur(9px)}
 .nav-chapters{display:flex;align-items:center;gap:18px;margin-right:auto}
 .reader :is(button,select,a):not(.wordmark){font-size:14px;line-height:1.4;font-weight:560;color:#435158;letter-spacing:0}
 .nav-chapters a:hover,.reader .actions a:hover,.reader .langs button:hover,.reader select:hover{color:var(--accent)}
@@ -226,7 +226,7 @@ html.export .guide-intro{display:none}
 .reading .route{display:contents}
 .reading .route-header{grid-area:heading;padding:0 75px 0 0}
 .reading .route h2{font-size:30px;line-height:1.15;letter-spacing:-.035em}
-.reading .model{grid-area:model;align-self:stretch;width:100%;margin:0;position:relative;background:#f5e8d8;overflow:hidden}
+.reading .model{grid-area:model;align-self:stretch;width:100%;margin:0;position:relative;background:#fff;overflow:hidden}
 .reading .model img{position:absolute;inset:0;object-fit:contain;height:100%;width:100%}
 .reading .stations{grid-area:stations;padding:0;gap:22px}
 .reading .stack{grid-area:stack;padding:6px 0 0;gap:18px 36px;grid-template-rows:auto auto}
@@ -322,6 +322,46 @@ dialog{border-radius:12px}
 .guide-facts>span{white-space:nowrap}
 .guide-facts>span+span:before{content:"·";display:inline-block;margin-right:12px;color:#71848b}
 @media(max-width:740px){.reader select{appearance:auto}.guide-facts{gap:8px}.guide-facts>span+span:before{margin-right:8px}}
+:root{--paper:#fff;--canvas:#fff;--ink:#1c2226;--text:#364047;--muted:#5a666d;--accent:#295d70;--border:#e5e9eb}
+html,body,.page,.model,.reading .model,.reading #book>article,.reading .guide-intro{background-color:white}
+.reader{background:#fffffff5}
+.guide-intro{padding-top:43px;padding-bottom:38px}
+.guide-intro h1{font-weight:560;letter-spacing:-.038em}
+.guide-intro p{font-weight:445;letter-spacing:-.015em;line-height:1.34}
+.reading #book{gap:38px}
+.reading .poster{padding:28px 32px 32px;gap:26px 24px}
+.reading .plate{padding:28px 32px 32px}
+.reading .platehead h2{font-size:clamp(30px,3vw,41px);font-weight:555;letter-spacing:-.03em;line-height:1.13;margin:15px 0 12px}
+.reading .platehead>p{font-weight:410;line-height:1.58;max-width:72ch}
+.reading .platebody{gap:29px;margin-top:24px}
+.reading .platebody .duo,.reading .bird-bottom{gap:22px}
+.reading .stations{gap:25px}
+.reading .stack{padding-top:12px;gap:24px 48px}
+.reading .station strong,.reading .stack strong,.reading .plate figcaption>b,.reading .textband>b,.reading .recipe b,.reading .pipeline>b,.reading .plothead strong,.reading .math-title>b,.reading .prompt-note>b{font-weight:590;letter-spacing:-.014em}
+.reading .plate figcaption>span,.reading .platebody p,.reading .stack p{line-height:1.53}
+.reading .recipe{gap:17px}
+.math-note,.pipeline,.prompt-note{background:#fff}
+.reading .math-note,.reading .pipeline,.reading .prompt-note{padding:0}
+.reading .math-note code,.reading .pipeline code{margin:9px 0}
+.reading .region-notes strong,.reading .registration strong{font-weight:500;letter-spacing:-.05em}
+.platehead h2{font-weight:600;letter-spacing:-.035em}
+.plate figcaption>b,.textband>b,.recipe b,.pipeline>b,.plothead strong,.math-title>b,.prompt-note>b,.stack strong{font-weight:610;letter-spacing:-.02em}
+[lang="zh-CN"] .guide-intro p,[lang="zh-CN"] .platehead h2,[lang="zh-CN"] .route h2,[lang="zh-CN"] .plate figcaption>b,[lang="zh-CN"] .stack strong{letter-spacing:0}
+[lang="zh-CN"] .reading .platehead h2,html.reading[lang="zh-CN"] .platehead h2{line-height:1.28;font-weight:540}
+.reading .model img{object-fit:contain}
+@media(max-width:740px){
+ .guide-intro{padding:26px 17px 24px}
+ .reading #book{gap:23px}
+ .reading .poster,.reading .plate{padding:20px 16px 23px}
+ .reading .poster{gap:18px}
+ .reading .platehead h2{font-size:30px;margin:14px 0 9px}
+ .reading .platebody{gap:22px;margin-top:18px}
+ .reading .platehead>p,.reading .plate figcaption>span,.reading .platebody p,.reading .stack p{line-height:1.53}
+ .reading .stations{gap:18px 16px}
+ .reading .stack{padding-top:8px;gap:18px}
+ .reading .recipe{gap:15px}
+ .reading .math-note,.reading .prompt-note,.reading .pipeline{padding:0}
+}
 </style></head>
 <body><div class="page">
 <nav class="reader" aria-label="Poster controls">
@@ -344,7 +384,7 @@ dialog{border-radius:12px}
     </header>
     <section class="route" aria-labelledby="route-title">
       <div class="route-header"><h2 id="route-title" data-t="section">Inside the 3D set</h2></div>
-      <figure class="model"><img src="making-of-src/art/cutaway.webp" data-alt="modelAlt" alt="Illustrated cutaway from a torn sun print through hinged pages and an ink fissure into a curling painted wave." width="1962" height="801"></figure>
+      <figure class="model"><img src="making-of-src/art/cutaway.webp" data-alt="modelAlt" alt="Illustrated cutaway from a torn sun print through hinged pages and an ink fissure into a curling painted wave." width="1964" height="801"></figure>
       <div class="stations">
         <button class="station" data-scene="tear"><time>00.62 s</time><strong data-t="tear">Tear the sky</strong><span data-t="tearShort">Split the landscape into three sheets.</span></button>
         <button class="station" data-scene="fold"><time>10.53 s</time><strong data-t="fold">Hinge 22 pages</strong><span data-t="foldShort">Stamp four wing poses onto the paper.</span></button>
