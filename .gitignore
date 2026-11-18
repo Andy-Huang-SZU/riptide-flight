@@ -2,6 +2,6 @@
 __pycache__/
 *.pyc
 riptide-offline.html
-riptide.mp4
+/riptide.mp4
 *.part.mp4
 evidence/
