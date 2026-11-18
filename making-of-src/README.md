@@ -1,6 +1,6 @@
 # Six illustrated build notes
 
-The reader opens on a moving shot from the public film. Technical chapters place the introduction beside the evidence on wide screens and reflow into a single column on phones. Reduced-motion settings preserve the still cover. Tap a production figure to see its native image, or open the gold-ridge comparison and drag the divider. The fixed 4:5 print design is used only when exporting PNGs.
+The reader uses a chapter bar, a title and six illustrated sections. The first section pairs the playable film with the illustrated cutaway. The two sit side by side on a wide screen and stack on a phone. Tap a production figure to see its native image, or open the gold-ridge comparison and drag the divider. The fixed 4:5 print design is used only when exporting PNGs.
 
 - `poster.html` and `technical.html` contain the English and Chinese copy. `reader.js` draws the six measured crop rectangles, the actual score envelope and cue markers.
 - `art/` contains the studio stills, input crop, raw repaint, registered crop and diagnostic views used by the guide. `technical-views.js` shows how the orthographic cutaway, film-camera mesh, skinned rig with projected joints, and wing stamps were drawn. The cutaway illustration was generated separately. [ImageGen prompt](imagegen-prompt.md)

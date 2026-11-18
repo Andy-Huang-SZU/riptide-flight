@@ -1,14 +1,15 @@
 'use strict';
 (() => {
   const byId=id=>document.getElementById(id);
-  const heroMotion=byId('poster').querySelector('.hero-motion');
   const sceneKeys=['tear','fold','bank','peel','art','detail'];
   const times={tear:37/60,fold:632/60,bank:887/60,peel:1286/60};
   const headings={tear:'tear',fold:'fold',bank:'bank',peel:'peel',art:'artTitle',detail:'detailTitle'};
   const thumb={tear:'tear',fold:'fold',bank:'bank',peel:'peel'};
   const nav=byId('inspect'),view=byId('view'),reader=byId('scroll-area');
   const isExport=new URLSearchParams(location.search).has('export');
-  let lang=new URLSearchParams(location.search).get('lang')==='zh'?1:0,zoom=false,active=null;
+  const requestedLanguage=new URLSearchParams(location.search).get('lang');
+  let lang=requestedLanguage==='zh'||(!requestedLanguage&&!isExport&&/^zh/i.test(navigator.language))?1:0;
+  let zoom=false,active=null;
   const t=key=>COPY[key][lang];
   document.documentElement.classList.add(isExport?'export':'reading');
   let inspected=null;
@@ -137,16 +138,6 @@
     }
   }
   drawRegions();drawScore();
-  if(!isExport && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-    const observer=new IntersectionObserver(([entry])=>{
-      if(entry.isIntersecting){
-        if(!heroMotion.src)heroMotion.src=heroMotion.dataset.src;
-        heroMotion.muted=true;
-        heroMotion.play().then(()=>heroMotion.classList.add('playing')).catch(()=>{});
-      }else{heroMotion.pause();}
-    });
-    observer.observe(heroMotion);
-  }
   if(isExport)reader.style.width='800px';
   new ResizeObserver(resize).observe(reader);localize();
   window.posterReady=Promise.all([document.fonts.ready,...[...document.querySelectorAll('article img')].map(i=>i.decode())]).then(()=>{resize();return true;});

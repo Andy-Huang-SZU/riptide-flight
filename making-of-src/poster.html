@@ -2,21 +2,22 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="data:,"><meta name="author" content="Andy Woohoo"><meta name="theme-color" content="#181818"><meta name="description" content="How Andy Woohoo flew a swallow through three paintings with Codex and ImageGen. Six illustrated notes on the shaders, rig, painting prompts and 4K render."><meta property="og:title" content="Riptide — Making of"><meta property="og:image" content="https://andy-huang-szu.github.io/riptide-flight/docs/cover.jpg"><title>The Sun, Again / Riptide — Making of</title>
 <style>@@CSS@@</style></head>
-<body>
+<body><div class="page">
 <nav class="reader" aria-label="Poster controls">
-  <a class="wordmark" href="#poster" aria-label="Riptide, first sheet">Riptide</a><div class="langs"><button id="en" aria-pressed="true" lang="en">EN</button><span aria-hidden="true">/</span><button id="zh" aria-pressed="false" lang="zh-CN">中文</button></div>
+  <div class="nav-chapters" aria-label="Chapters"><a href="#poster" data-zh="流程">Workflow</a><a href="#geometry" data-zh="隧道">Geometry</a><a href="#bird-sheet" data-zh="燕子">Flight</a><a href="#texture-sheet" data-zh="材质">Textures</a><a href="#prompt-sheet" data-zh="提示词">Prompt</a><a href="#time-sheet" data-zh="导出">Render</a></div><div class="langs"><button id="en" aria-pressed="true" lang="en">EN</button><span aria-hidden="true">/</span><button id="zh" aria-pressed="false" lang="zh-CN">中文</button></div>
   <select id="chapter-nav" aria-label="Jump to a breakdown sheet"><option value="0" data-zh="总流程">Workflow</option><option value="1" data-zh="三维几何">Geometry</option><option value="2" data-zh="飞行绑定">Flight rig</option><option value="3" data-zh="材质精度">4K textures</option><option value="4" data-zh="实际提示词">ImageGen prompt</option><option value="5" data-zh="时间与导出">Rendering</option><option value="repo" data-zh="GitHub 源码">GitHub source ↗</option></select>
   <div class="actions"><a class="source-link" href="https://github.com/Andy-Huang-SZU/riptide-flight" data-zh="源码">Source</a><button id="zoom" data-t="zoom">Zoom in</button><a id="download" download="Riptide-making-of.png" href="@@DOWNLOAD@@" data-t="save">Save image</a><a href="@@FILM@@" data-t="watch">Play film</a></div>
 </nav>
 <main>
+  <header class="guide-intro"><h1>The Sun, Again</h1><p data-zh="一只燕子，怎样飞进三幅平面画？">How does a swallow fly through three paintings?</p><div class="guide-facts"><span data-zh="《裂潮》制作笔记">Riptide production notes</span><span data-zh="26.5 秒">26.5 s</span><span>4K / 60 fps</span></div></header>
   <div id="scroll-area"><div id="paper-size"><div id="book"><article class="poster" id="poster" aria-labelledby="title">
     <div class="cover-folio">THE SUN, AGAIN</div><span class="page-num">01 <i>/ 06</i></span>
     <header class="hero">
-      <img id="hero-image" src="@@WAVE@@" alt="" width="1920" height="1080" draggable="false">
-      <video class="hero-motion" muted loop playsinline aria-hidden="true" data-src="@@LOOP@@"></video><div class="hero-shade"></div>
+      <img id="hero-image" src="@@WAVE@@" alt="Swallow flying through the painted wave" width="1920" height="1080" draggable="false">
+      <video class="overview-film" controls playsinline preload="metadata" poster="@@COVER@@" aria-label="Play the 26.5-second film" src="@@GUIDEFILM@@"></video>
       <div class="hero-copy">
 
-        <h1 id="title" data-zh="裂潮">Riptide</h1><p class="standfirst" data-zh="我用三幅画，搭了一条燕子能飞进去的隧道。">I built a tunnel out of three paintings.</p>
+        <h2 id="title" data-zh="裂潮">Riptide</h2><p class="standfirst" data-zh="我用三幅画，搭了一条燕子能飞进去的隧道。">I built a tunnel out of three paintings.</p>
         <div class="hero-meta"><span>26.5 s</span><b></b><span>4K / 60 fps</span></div>
       </div>
     </header>
@@ -47,4 +48,4 @@
 </dialog>
 <script>const PICTURES=@@EXTRA@@; const FILM_URL='@@FILM@@'; const COPY=@@COPY@@; const PLOTS=@@PLOTS@@;</script>
 <script>@@JS@@</script>
-</body></html>
+</div></body></html>

@@ -36,7 +36,7 @@ Open `riptide-offline.html`. The web player chooses display-size textures for sm
 | Build the set | The same sky painting feeds three moving leaves. Five gates have three blocks each. Eleven independent leaves flank each side of the path. The wave uses a 205 × 127 grid. [Opening](src/paper.js) · [Gates and leaves](src/printworks.js) · [Wave](src/tide.js) |
 | Animate | A seven-bone swallow, measured forward axis, a deterministic wing cycle, and a camera sampled from the same time as the set. [Editable Blender file](tools/studio-swallow.blend) · [Rig and pose](src/flight.js) · [Camera and scene](src/film.js) |
 | Score and render | A 127 BPM grid with 56 beats and 17 action cues. Four samples across a 72° shutter for each of 1,590 frames. WebCodecs encodes H.264. FFmpeg muxes the 48 kHz stereo mix. [Beat grid](beat-grid.json) · [Frame export](src/export.js) · [Procedural score](tools/score.py) |
-| Make the breakdown | The six sheets use real film crops, a diagnostic shader, projected rig joints and music measurements. The opening cutaway is an ImageGen illustration. [Reader source](making-of-src) · [Cutaway prompt](making-of-src/imagegen-prompt.md) · [PNGs and offline film](https://github.com/Andy-Huang-SZU/riptide-flight/releases/tag/v1.0.0) |
+| Make the breakdown | The six sheets use real film crops, a diagnostic shader, projected rig joints and music measurements. The opening cutaway is an ImageGen illustration. [Reader source](making-of-src) · [Cutaway prompt](making-of-src/imagegen-prompt.md) · [PNGs and offline film](https://github.com/Andy-Huang-SZU/riptide-flight/releases/latest) |
 
 The projection technique was inspired by Max Vedel’s *Paris Freestyle*. [Original post](https://x.com/mxvdl/status/2120505286603505858)
 
