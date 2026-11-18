@@ -1,0 +1,90 @@
+<article class="plate geometry" id="geometry" aria-labelledby="geo-title">
+  <header class="platehead">
+    <div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="几何构造">Set geometry</em></b><span class="page-num">02 <i>/ 06</i></span></div>
+    <h2 id="geo-title" data-zh="平面浪画的纵深从哪来？">How does a flat wave get depth?</h2>
+    <p data-zh="我给一张规则网格贴上浪画。顶点保留自己的取色位置，着色器把顶点推到不同的深度。">The shader pushes parts of a painted grid away from the camera. Each point keeps its original texture coordinates.</p>
+  </header>
+  <div class="platebody">
+    <div class="duo widefig">
+      <figure><div class="imgscene"><img src="@@PSEA@@" alt="Production wave texture"><i class="eye-pin"></i></div><figcaption><b data-zh="原始贴图">Flat texture</b><span data-zh="十字标在浪眼，UV 为 (0.669, 0.506)。">Crosshair at the eye, UV (0.669, 0.506).</span></figcaption></figure>
+      <figure><div class="imgscene wire"><img src="@@WIRESIDE@@" alt="Outside view using the real vertex shader"></div><figcaption><b data-zh="同一张网格，从侧面看">The same grid from outside</b><span data-zh="剖开近侧，每五个网格间距画一条线。">Cutaway showing every fifth grid line.</span></figcaption></figure>
+    </div>
+    <div class="math-note"><div class="math-title"><b data-zh="离浪眼越近，表面被推得越远">Push the painted eye farther away</b><span>205 × 127 <span data-zh="格">cells</span></span></div>
+      <code>depth = 9.8 / (0.110 + r<sup>1.38</sup>)</code>
+      <p data-zh="r 是按宽高修正后的浪眼距离。r = 0.10 时深度约 64.6；r = 0.60 时约 16.2 个场景单位。">r is the aspect-corrected distance from the eye. At r = 0.10 the depth is 64.6 scene units. At r = 0.60 it is 16.2.</p>
+    </div>
+    <div class="duo lensfig">
+      <figure><div class="imgscene"><img src="@@WIREEYE@@" alt="Grid as seen from the moving film camera"></div><figcaption><b data-zh="镜头里的网格">Through the film camera</b></figcaption></figure>
+      <figure><div class="imgscene"><img src="@@WAVE@@" alt="Finished wave frame at 17.17 seconds"></div><figcaption><b data-zh="同一机位，17.17 秒的成片">Finished frame, same lens · 17.17 s</b></figcaption></figure>
+    </div>
+    <div class="textband"><b data-zh="前半段怎样运动">What moves before the wave?</b><p data-zh="五道门各有三块印版，先错开让路。左右各十一张折页绕各自的书脊转动，最后两面墨墙合拢成一道裂口。">Five gates of three blocks open first. Then 22 pages swing on their hinges. Two ink walls close into the slit.</p></div>
+  </div>
+</article>
+<article class="plate birdcard" id="bird-sheet" aria-labelledby="bird-title">
+  <header class="platehead"><div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="角色与绑定">Flight rig</em></b><span class="page-num">03 <i>/ 06</i></span></div>
+    <h2 id="bird-title" data-zh="燕子为什么像在倒飞？">Why did the bird fly backward?</h2>
+    <p data-zh="测试片里的燕子看起来像在倒飞。我从模型上取喙尖与两个叉尾尖，用这三个真实顶点重新定朝向。">The early bird looked tail-first. Three points on the mesh told me which way its beak actually faced.</p>
+  </header>
+  <div class="platebody">
+    <div class="bird-build">
+      <figure class="small-view"><img src="@@CONCEPT@@" alt="Original ImageGen bird reference"><figcaption><b>ImageGen</b><span data-zh="造型参考">Painted reference</span></figcaption></figure>
+      <figure class="small-view"><img src="@@TOPO@@" alt="Wireframe detail at the outer wing of the studio mesh"><figcaption><b>Tripo H3.1</b><span data-zh="外翼局部 · 全身 47,432 面">Wing detail · 47,432 tris total</span></figcaption></figure>
+      <figure class="big-view"><img src="@@RIG@@" alt="Actual studio swallow with seven joint pivots and measured forward arrow"><figcaption><b data-zh="Blender · 七骨骼绑定">Blender · seven-bone rig</b><span data-zh="躯干一根，左右肩、外翼和叉尾各一根。金点取自真实骨骼。">Body, paired shoulders, outer wings and tail branches. Gold dots are the actual joint pivots.</span></figcaption></figure>
+    </div>
+    <div class="math-note"><div class="math-title"><b data-zh="先找头尾，再让它贴合航线">Measure the heading, then follow the path</b></div>
+      <code>forward = normalize(bill − midpoint(tailL, tailR))</code>
+      <p data-zh="取前后相隔 18 毫秒的两个航点求切线，把头尾轴对齐切线。侧倾绕这根轴旋转；肩骨与外翼独立收拢。">Sample the path at t ± 9 ms to get its tangent. Point the beak along it. Roll around that axis and tuck the wings independently.</p>
+    </div>
+    <div class="bird-bottom"><figure><img src="@@STAMPS@@" alt="Four ink impressions from different phases of the real rig"><figcaption><b data-zh="运动本身也成了印刷素材">The rig makes its own prints</b><span data-zh="将四个翼姿渲染到离屏纹理，再把轮廓套印到折页上。">Render four wing poses to an offscreen texture. Stamp those silhouettes onto the hinged pages.</span></figcaption></figure>
+      <figure><img src="@@RIFT@@" alt="Actual studio swallow banked inside the ink fissure"><figcaption><b data-zh="14.78 秒 · 墨缝">14.78 s · the ink fissure</b><span data-zh="逐帧检查变形后的网格。过缝时测得最小余量为 0.348 个场景单位。">Check the deformed mesh frame by frame. Minimum measured clearance at the fissure was 0.348 scene units.</span></figcaption></figure></div>
+  </div>
+</article>
+<article class="plate texturecard" id="texture-sheet" aria-labelledby="texture-title">
+  <header class="platehead"><div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="纹理制作">Texture restoration</em></b><span class="page-num">04 <i>/ 06</i></span></div>
+    <h2 id="texture-title" data-zh="为什么第一版 4K 还是糊？">Why did the first 4K look soft?</h2>
+    <p data-zh="成片有 3840 × 2160 像素，但每张环境画只有 1672 × 941。浪尖掠过镜头时，一小块金色颜料占了数百个屏幕像素。">The frame was 3840 × 2160, but each painting was 1672 × 941. Close to the lens, one soft gold stroke filled hundreds of pixels.</p>
+  </header>
+  <div class="platebody">
+    <button class="compare-proof" data-scene="detail"><div class="crops"><div><img src="@@FIRST@@" alt="Soft gold rim in the previous UHD encode"><span data-t="before">First cut</span></div><div><img src="@@FINAL@@" alt="Separated gold ridges in the newer UHD encode"><span data-t="after">Final cut</span></div></div>
+      <span class="figline" data-zh="两部最终 MP4 同一帧同一位置，均取 470 × 204 像素。第 1030 帧，17.17 秒。">Two final MP4s, same 470 × 204-pixel window. Frame 1030 at 17.17 s.</span>
+    </button>
+    <div class="repaintrow"><figure><div class="region-picture"><img src="@@PSEA@@" alt="Actual source painting with six overlapping reference regions"><canvas id="regions" width="960" height="540" aria-hidden="true"></canvas></div><figcaption><b data-zh="浪壁分六块，边缘相互重叠">Six overlapping wave regions</b></figcaption></figure>
+      <div class="region-notes"><strong>6 + 4 + 2</strong><p data-zh="浪壁六块，岩层四块，山景两块。每块均把对应原画裁片交给 ImageGen 做参考。">Six wave, four rock and two sky repaints. Each ImageGen pass starts from its matching crop of the original.</p></div>
+    </div>
+    <div class="recipe">
+      <div><b data-zh="恢复底图">Restore the base</b><p data-zh="Real-ESRGAN x4 修复无损原画与局部新画，保留原来大色块的明暗关系。">Run Real-ESRGAN x4 on the lossless originals and the new detail paintings.</p></div>
+      <div><b data-zh="对齐新笔触">Register the marks</b><p data-zh="用 SIFT 特征点求初始对齐，再用光流修正局部漂移，把金边放回原来的轮廓。">Match SIFT features, then use optical flow to pull the gold back onto the original edge.</p></div>
+      <div><b data-zh="接回材质">Blend and remap</b><p data-zh="渐变混合重叠区，新纹理固定在表面 UV 上。最后得到三张 6688 × 3764 的贴图。">Feather the overlaps and keep the relief in surface UVs. The result is three 6688 × 3764 texture maps.</p></div>
+    </div>
+  </div>
+</article>
+<article class="plate promptcard" id="prompt-sheet" aria-labelledby="prompt-title">
+  <header class="platehead"><div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="真实提示词">ImageGen prompt</em></b><span class="page-num">05 <i>/ 06</i></span></div>
+    <h2 id="prompt-title" data-zh="我给 ImageGen 的提示词是什么？">What did I actually ask ImageGen?</h2>
+    <p data-zh="这是浪画左上角的一块。我把原画裁片交给 ImageGen 做参考，再用 Codex 写的配准程序，把返回的新笔触对齐到原画。">This is the top-left corner of the wave. I gave ImageGen the crop as a reference, then used a registration script built with Codex to place its new brushwork.</p>
+  </header>
+  <div class="platebody">
+    <div class="tiletrip"><figure><img src="@@TILEIN@@" alt="The original top-left 668 by 558 crop"><figcaption><b data-zh="输入裁片">Reference crop</b><span>668 × 558 px</span></figcaption></figure>
+      <figure><img src="@@TILEGEN@@" alt="Raw ImageGen repaint of the same region"><figcaption><b data-zh="ImageGen 返回图">ImageGen repaint</b><span data-zh="配准前">Before registration</span></figcaption></figure>
+      <figure><img src="@@TILEOUT@@" alt="Corresponding box in the final registered master texture"><figcaption><b data-zh="合成后的贴图">Registered result</b><span data-zh="取自最终材质">Cut from the final map</span></figcaption></figure></div>
+    <div class="prompt-note"><b data-zh="浪壁局部的原始提示词节选">From the actual wave prompt</b>
+      <blockquote lang="en">“Use the entire attached crop as the exact registration template.”</blockquote>
+      <blockquote lang="en">“crisp bristle splits following each existing stroke, thin broken knife ridges on the gold”</blockquote>
+      <p data-zh="我要求沿用原画的边界，只补每一笔内部缺失的细节。这样镜头掠过新画时，浪的轮廓仍与周围相接。">The borders register the tile with its neighbours. Inside each brushstroke, the prompt asks for bristle splits and broken gold ridges.</p></div>
+    <div class="registration"><div><strong>939</strong><b data-zh="用于配准的匹配内点">matched inliers</b></div><div><strong>0.31 px</strong><b data-zh="粗配准后的中位光流位移">median residual flow</b></div><p data-zh="这两个数都来自这一块。先用 SIFT 特征对齐，再用光流估计还需移动多少个原图像素。">For this tile, SIFT matched the landmarks. Optical flow measured the remaining local adjustment in source pixels.</p></div>
+    <div class="textband"><b data-zh="自己跑到同一帧">Try the same shot</b><p data-zh="打开开源场景，在浏览器控制台运行下面一行，跳到第 1030 帧。原画、十二张补画、裁片坐标与配准代码都在仓库里。">Run this in the scene’s browser console for frame 1030. The repo includes the references, full prompts, crop windows and registration code.</p><code>seek(1030 / 60)</code></div>
+  </div>
+</article>
+<article class="plate timingcard" id="time-sheet" aria-labelledby="time-title">
+  <header class="platehead"><div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="拍点与导出">Timing &amp; rendering</em></b><span class="page-num">06 <i>/ 06</i></span></div>
+    <h2 id="time-title" data-zh="怎样把整场飞行锁在拍点上？">One clock for flight and sound</h2>
+    <p data-zh="我从 Suno 配乐标出 56 个拍点，选了 17 个动作提示。相机、翅膀和布景都读取同一个时间 t。">I marked 56 beats and picked 17 action cues from the Suno score. The camera, wings and set all read one time value.</p>
+  </header>
+  <div class="platebody">
+    <figure class="waveplot"><div class="plothead"><strong data-zh="成片配乐波形">Studio score waveform</strong><span>127 BPM · 26.5 s</span></div><canvas id="waveplot" width="1500" height="152" aria-label="Measured waveform with beat ticks and three cue markers"></canvas><div class="plotlegend"><span>0 s</span><span data-zh="细刻线是拍点，黄线是下方三个动作">Ticks are beats. Gold marks the three cues below.</span><span>26.5 s</span></div></figure>
+    <div class="cueframes"><figure><img src="@@PRINT@@" alt="Stamped page frame"><figcaption><b>10.53 s</b><span data-zh="折页套印">Stamp the pages</span></figcaption></figure><figure><img src="@@RIFT@@" alt="Bank into the crack"><figcaption><b>14.78 s</b><span data-zh="收翼穿缝">Tuck the wings</span></figcaption></figure><figure><img src="@@CREST@@" alt="Paint curling off the sun"><figcaption><b>20.95 s</b><span data-zh="浪壁剥开">Peel the wave</span></figcaption></figure></div>
+    <div class="pipeline"><b data-zh="同一时刻必须能重画">Make every frame reproducible</b><p data-zh="seek(t) 从时间重算姿态、相机和布景。Chrome 在 72° 快门内取四个子帧并平均，快速掠过时仍保留刀痕。">seek(t) reconstructs the pose, camera and set. Chrome averages four samples over a 72° shutter to keep the cuts legible during fast flybys.</p><code>26.5 s × 60 fps × 4 samples = 6,360 renders</code></div>
+    <div class="recipe two"><div><b>WebCodecs → FFmpeg</b><p data-zh="浏览器编码 H.264 画面，FFmpeg 合入 48 kHz 立体声 AAC。输出 1590 帧的 4K 循环。">Encode H.264 in the browser and mux 48 kHz stereo AAC in FFmpeg. That gives a 1,590-frame 4K loop.</p></div>
+    <div><b data-zh="用成片做检查">Check the encoded movie</b><p data-zh="完整解码，核对全部时间戳与首尾接缝。17 个声音提示均与源音轨相差 0 个采样。">Decode every frame and check the timestamps and loop seam. All 17 audio cues align with the source to the sample.</p></div></div>
+  </div>
+</article>

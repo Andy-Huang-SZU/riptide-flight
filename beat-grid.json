@@ -1,0 +1,250 @@
+{
+  "duration": 26.5,
+  "fps": 60,
+  "bpm": 127,
+  "beats": [
+    {
+      "time_s": 0.16698,
+      "bar_position": 1
+    },
+    {
+      "time_s": 0.63877,
+      "bar_position": 2
+    },
+    {
+      "time_s": 1.11023,
+      "bar_position": 3
+    },
+    {
+      "time_s": 1.5826,
+      "bar_position": 4
+    },
+    {
+      "time_s": 2.05367,
+      "bar_position": 1
+    },
+    {
+      "time_s": 2.52562,
+      "bar_position": 2
+    },
+    {
+      "time_s": 2.9966,
+      "bar_position": 3
+    },
+    {
+      "time_s": 3.46867,
+      "bar_position": 4
+    },
+    {
+      "time_s": 3.94019,
+      "bar_position": 1
+    },
+    {
+      "time_s": 4.41221,
+      "bar_position": 2
+    },
+    {
+      "time_s": 4.88373,
+      "bar_position": 3
+    },
+    {
+      "time_s": 5.3556,
+      "bar_position": 4
+    },
+    {
+      "time_s": 5.82735,
+      "bar_position": 1
+    },
+    {
+      "time_s": 6.29908,
+      "bar_position": 2
+    },
+    {
+      "time_s": 6.77144,
+      "bar_position": 3
+    },
+    {
+      "time_s": 7.24296,
+      "bar_position": 4
+    },
+    {
+      "time_s": 7.71503,
+      "bar_position": 1
+    },
+    {
+      "time_s": 8.18715,
+      "bar_position": 2
+    },
+    {
+      "time_s": 8.65925,
+      "bar_position": 3
+    },
+    {
+      "time_s": 9.13139,
+      "bar_position": 4
+    },
+    {
+      "time_s": 9.60371,
+      "bar_position": 1
+    },
+    {
+      "time_s": 10.07575,
+      "bar_position": 2
+    },
+    {
+      "time_s": 10.54854,
+      "bar_position": 3
+    },
+    {
+      "time_s": 11.02062,
+      "bar_position": 4
+    },
+    {
+      "time_s": 11.49312,
+      "bar_position": 1
+    },
+    {
+      "time_s": 11.96548,
+      "bar_position": 2
+    },
+    {
+      "time_s": 12.43829,
+      "bar_position": 3
+    },
+    {
+      "time_s": 12.91052,
+      "bar_position": 4
+    },
+    {
+      "time_s": 13.38358,
+      "bar_position": 1
+    },
+    {
+      "time_s": 13.85656,
+      "bar_position": 2
+    },
+    {
+      "time_s": 14.32944,
+      "bar_position": 3
+    },
+    {
+      "time_s": 14.80192,
+      "bar_position": 4
+    },
+    {
+      "time_s": 15.27519,
+      "bar_position": 1
+    },
+    {
+      "time_s": 15.74777,
+      "bar_position": 2
+    },
+    {
+      "time_s": 16.22048,
+      "bar_position": 3
+    },
+    {
+      "time_s": 16.69327,
+      "bar_position": 4
+    },
+    {
+      "time_s": 17.16588,
+      "bar_position": 1
+    },
+    {
+      "time_s": 17.63844,
+      "bar_position": 2
+    },
+    {
+      "time_s": 18.111,
+      "bar_position": 3
+    },
+    {
+      "time_s": 18.58358,
+      "bar_position": 4
+    },
+    {
+      "time_s": 19.05594,
+      "bar_position": 1
+    },
+    {
+      "time_s": 19.52831,
+      "bar_position": 2
+    },
+    {
+      "time_s": 20.001,
+      "bar_position": 3
+    },
+    {
+      "time_s": 20.47373,
+      "bar_position": 4
+    },
+    {
+      "time_s": 20.94656,
+      "bar_position": 1
+    },
+    {
+      "time_s": 21.41948,
+      "bar_position": 2
+    },
+    {
+      "time_s": 21.89206,
+      "bar_position": 3
+    },
+    {
+      "time_s": 22.3646,
+      "bar_position": 4
+    },
+    {
+      "time_s": 22.83794,
+      "bar_position": 1
+    },
+    {
+      "time_s": 23.31102,
+      "bar_position": 2
+    },
+    {
+      "time_s": 23.7839,
+      "bar_position": 3
+    },
+    {
+      "time_s": 24.25708,
+      "bar_position": 4
+    },
+    {
+      "time_s": 24.73104,
+      "bar_position": 1
+    },
+    {
+      "time_s": 25.2044,
+      "bar_position": 2
+    },
+    {
+      "time_s": 25.6775,
+      "bar_position": 3
+    },
+    {
+      "time_s": 26.15112,
+      "bar_position": 4
+    }
+  ],
+  "cues": {
+    "birth": 0.131,
+    "release": 0.619,
+    "runup": 3.449,
+    "approach": 5.805,
+    "print": 7.695,
+    "inkSnap": 10.531,
+    "brake": 12.895,
+    "break": 13.367,
+    "coil": 14.781,
+    "oil": 15.279,
+    "climb": 17.171,
+    "sweep": 19.065,
+    "crest": 20.953,
+    "sun": 22.845,
+    "lastKick": 23.311,
+    "imprint": 24.711,
+    "end": 26.131
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "title1": [
+    "I built a tunnel",
+    "我用三张画"
+  ],
+  "title2": [
+    "out of paint.",
+    "搭了一条隧道。"
+  ],
+  "section": [
+    "Inside the 3D set",
+    "拆开这条隧道"
+  ],
+  "tear": [
+    "Tear the sky",
+    "撕开天空"
+  ],
+  "tearShort": [
+    "Split the sky into three sheets.",
+    "把天空拆成三张画页。"
+  ],
+  "fold": [
+    "Hinge 22 pages",
+    "翻动 22 张折页"
+  ],
+  "foldShort": [
+    "Print four wing poses.",
+    "套印四种扑翼姿势。"
+  ],
+  "bank": [
+    "Bank the bird",
+    "让燕子侧身"
+  ],
+  "bankShort": [
+    "Tuck into the ink slit.",
+    "侧身收翼穿过墨缝。"
+  ],
+  "peel": [
+    "Peel the wave",
+    "剥开浪壁"
+  ],
+  "peelShort": [
+    "Uncurl the painted wave.",
+    "让巨浪剥成长笔触。"
+  ],
+  "artTitle": [
+    "Three source paintings",
+    "三张平面原画"
+  ],
+  "artShort": [
+    "ImageGen painted the sky, canyon and wave. I mapped each onto the set.",
+    "用 ImageGen 画出山景、岩层和巨浪，再把画铺进三维场景。"
+  ],
+  "detailTitle": [
+    "Repainting for 4K",
+    "为 4K 补画笔触"
+  ],
+  "detailShort": [
+    "I used ImageGen to repaint 12 close-ups. The gold ridges hold up in flight.",
+    "用 ImageGen 分 12 块补画。飞近时，金色浪脊上仍看得见刀痕。"
+  ],
+  "credits": [
+    "Swallow mesh · Tripo   /   Rig · Blender   /   Score · Suno",
+    "燕子模型 · Tripo　/　骨骼绑定 · Blender　/　成片配乐 · Suno"
+  ],
+  "influence": [
+    "Projection inspired by Max Vedel’s Paris Freestyle (@mxvdl).",
+    "投影手法受 Max Vedel（@mxvdl）的 Paris Freestyle 启发。"
+  ],
+  "before": [
+    "First cut",
+    "上一版"
+  ],
+  "after": [
+    "Final cut",
+    "本版"
+  ],
+  "tearBody": [
+    "I started with a flat sun print. Three leaves sample the same part of the painting at their shared edges. They peel in different directions, exposing the first row of carved gates.",
+    "开场只有一张平展的日轮版画。我让三张画页在接缝处连续取色，然后分别向外掀开，露出后面的第一排木刻门框。"
+  ],
+  "foldBody": [
+    "In Three.js I hinged eleven leaves on each side. I took four impressions of the actual bird at different moments in its wingbeat and stamped them into the moving pages.",
+    "我在 Three.js 里给左右两侧各安装 11 张折页，从燕子真实的扑翼动作取四个姿势，再把它们套印到转动的页上。"
+  ],
+  "bankBody": [
+    "I rigged the Tripo swallow in Blender. The bird points along the flight path, while the wings and tail move independently. The rig banks and tucks as the two ink walls close in.",
+    "燕子网格来自 Tripo，我在 Blender 里绑定翅膀和尾羽。喙尖朝着航线，左右翼可以独立运动。两面墨墙合拢时，它随航线侧倾并收翼。"
+  ],
+  "peelBody": [
+    "I bent the painted wave into a hollow barrel around the camera. Its lip rolls overhead, then the wall separates into long strokes and opens onto the same sun that started the loop.",
+    "我把蓝金色浪画弯成中空的浪腹，让镜头从里面穿过。浪唇从头顶卷过，浪壁随后剥成长笔触，远处重新出现开场的日轮。"
+  ],
+  "artBody": [
+    "These are the three flat ImageGen paintings from the project. The sky becomes three leaves, the strata supply the gates and hinged pages, and the blue painting wraps the inside of the wave.",
+    "这是工程里的三张 ImageGen 平面原画。山景被裁成三张可掀开的画页，岩层铺到门框和折页上，蓝金色的浪画则沿浪腹内侧展开。"
+  ],
+  "detailBody": [
+    "Both crops come from frame 1030 of a 4K export. The first used 1672 × 941 paintings. I repainted six wave regions, four rock regions and two sky regions, then registered them into three 6688 × 3764 textures. Drag to compare the gold edge.",
+    "两边都截自 4K 成片第 1030 帧（从零计数）。第一版原画是 1672 × 941。我分别补绘六块浪壁、四块岩层和两块山景，对齐后制成三张 6688 × 3764 的贴图。拖动滑杆可以比较同一处金边。"
+  ],
+  "modelAlt": [
+    "Illustrated cutaway of the torn sun print, hinged pages, closing ink walls and hollow wave.",
+    "隧道剖面示意图，从撕开的日轮版画、翻转的折页和收紧的墨缝，一直延伸到中空的浪腹。"
+  ],
+  "proofs": [
+    "Production materials",
+    "工程素材"
+  ],
+  "zoom": [
+    "Larger text",
+    "大字"
+  ],
+  "fit": [
+    "Standard text",
+    "标准字"
+  ],
+  "save": [
+    "Save PNG",
+    "保存长图"
+  ],
+  "watch": [
+    "Play film",
+    "播放作品"
+  ],
+  "close": [
+    "Close",
+    "关闭"
+  ],
+  "prev": [
+    "Previous",
+    "上一处"
+  ],
+  "next": [
+    "Next",
+    "下一处"
+  ],
+  "jump": [
+    "Play from here",
+    "从这里播放"
+  ],
+  "wipe": [
+    "Compare the same frame",
+    "对比同一帧"
+  ],
+  "still": [
+    "Film frame",
+    "成片画面"
+  ],
+  "source": [
+    "Original artwork",
+    "真实原画"
+  ],
+  "crop": [
+    "4K film crops · 17.17 s",
+    "4K 成片原尺寸裁片 · 17.17 秒"
+  ],
+  "skyAlt": [
+    "Flat painting of the sun and mountain ridges",
+    "太阳与山脊的平面画"
+  ],
+  "rockAlt": [
+    "Flat woodcut of canyon strata",
+    "岩层木刻平面画"
+  ],
+  "waveAlt": [
+    "Flat blue and gold wave painting",
+    "蓝金色浪壁平面画"
+  ]
+}

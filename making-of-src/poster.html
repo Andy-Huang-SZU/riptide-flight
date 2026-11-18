@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,"><meta name="author" content="Andy Woohoo"><meta name="theme-color" content="#f8fafc"><title>The Sun, Again / Riptide — Making of</title>
+<style>@@CSS@@</style></head>
+<body>
+<nav class="reader" aria-label="Poster controls">
+  <div class="langs"><button id="en" aria-pressed="true" lang="en">EN</button><button id="zh" aria-pressed="false" lang="zh-CN">中文</button></div>
+  <select id="chapter-nav" aria-label="Jump to a breakdown sheet"><option value="0" data-zh="总流程">Workflow</option><option value="1" data-zh="三维几何">Geometry</option><option value="2" data-zh="飞行绑定">Flight rig</option><option value="3" data-zh="材质精度">4K textures</option><option value="4" data-zh="实际提示词">ImageGen prompt</option><option value="5" data-zh="时间与导出">Rendering</option><option value="repo" data-zh="GitHub 源码">GitHub source ↗</option></select>
+  <div class="actions"><a class="source-link" href="https://github.com/Andy-Huang-SZU/riptide-flight" data-zh="源码">Source</a><button id="zoom" data-t="zoom">Zoom in</button><a id="download" download="Riptide-making-of.png" href="@@DOWNLOAD@@" data-t="save">Save image</a><a href="@@FILM@@" data-t="watch">Play film</a></div>
+</nav>
+<main>
+  <div id="scroll-area"><div id="paper-size"><div id="book"><article class="poster" id="poster" aria-labelledby="title">
+    <div class="folio cover-folio"><b>RIPTIDE <span>/</span> THE SUN, AGAIN</b><span class="page-num">01 <i>/ 06</i></span></div>
+    <header class="hero">
+      <img id="hero-image" src="@@WAVE@@" alt="" width="1920" height="1080" draggable="false">
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+
+        <h1 id="title"><span data-t="title1">I built a tunnel</span><em data-t="title2">out of paint.</em></h1>
+        <div class="hero-meta"><span>26.5 s</span><b></b><span>4K / 60 fps</span></div>
+      </div>
+    </header>
+    <section class="route" aria-labelledby="route-title">
+      <div class="route-header"><h2 id="route-title" data-t="section">Inside the 3D set</h2></div>
+      <figure class="model"><img src="@@CUTAWAY@@" data-alt="modelAlt" alt="Illustrated cutaway from a torn sun print through hinged pages and an ink fissure into a curling painted wave." width="1962" height="801"></figure>
+      <div class="stations">
+        <button class="station" data-scene="tear"><time>00.62 s</time><strong data-t="tear">Tear the sky</strong><span data-t="tearShort">Split the landscape into three sheets.</span></button>
+        <button class="station" data-scene="fold"><time>10.53 s</time><strong data-t="fold">Hinge 22 pages</strong><span data-t="foldShort">Stamp four wing poses onto the paper.</span></button>
+        <button class="station" data-scene="bank"><time>14.78 s</time><strong data-t="bank">Bank the bird</strong><span data-t="bankShort">Tuck the wings to clear the ink walls.</span></button>
+        <button class="station" data-scene="peel"><time>21.43 s</time><strong data-t="peel">Peel the wave</strong><span data-t="peelShort">Unroll the brushstrokes to reveal the sun.</span></button>
+      </div>
+    </section>
+    <section class="stack" aria-label="Tools and handoffs">
+      <button type="button" class="stack-action" data-scene="art"><strong>ImageGen</strong><p data-zh="画出天空、岩层和巨浪，另生成一张燕子造型参考。">Paint three environments and a reference for the swallow.</p></button>
+      <div><strong>Tripo H3.1 → Blender</strong><p data-zh="从燕子参考图生成网格，为翅膀和尾羽绑定七根骨骼。">Make the mesh. Bind the wings and tail to seven bones.</p></div>
+      <div><strong>Codex + Three.js</strong><p data-zh="用代码搭印版、编排飞行路径，给浪壁写着色器，并测量过缝余量。">Write the tunnel shader, animate the gates and test the flight path.</p></div>
+      <div><strong>Suno · WebCodecs · FFmpeg</strong><p data-zh="从配乐标出动作拍点。浏览器逐帧绘制，最后合入立体声音轨。">Set 17 music cues. Encode 1,590 frames and add stereo sound.</p></div>
+    </section>
+  </article>@@PAGES@@</div></div></div>
+</main>
+<dialog id="inspect">
+  <div class="dialog-bar"><span id="modal-kicker"></span><button id="close" aria-label="Close" data-aria="close">×</button></div>
+  <h2 id="modal-title"></h2><figure id="view"></figure>
+  <div class="range-row" hidden><label for="wipe" data-t="wipe">Compare the same frame</label><input id="wipe" type="range" min="0" max="100" value="50" data-aria="wipe"></div>
+  <p id="modal-text"></p>
+  <div class="modal-actions"><button id="prev" data-t="prev">Previous</button><button id="next" data-t="next">Next</button><a id="jump" href="@@FILM@@" data-t="jump">Play from here</a></div>
+</dialog>
+<script>const PICTURES=@@EXTRA@@; const FILM_URL='@@FILM@@'; const COPY=@@COPY@@; const PLOTS=@@PLOTS@@;</script>
+<script>@@JS@@</script>
+</body></html>

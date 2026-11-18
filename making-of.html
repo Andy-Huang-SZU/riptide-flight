@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,"><meta name="author" content="Andy Woohoo"><meta name="theme-color" content="#f8fafc"><title>The Sun, Again / Riptide — Making of</title>
+<style>@font-face{font-family:Instrument;src:url(assets/instrument-sans.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:Print;src:url(making-of-src/art/instrument-serif-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Print;src:url(making-of-src/art/instrument-serif-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+*{box-sizing:border-box}html{background:#1c2426;color:#212b2c}body{margin:0;font-family:Instrument,"PingFang SC","Microsoft YaHei",sans-serif;font-synthesis:none}
+button,a{font:inherit;color:inherit}button{cursor:pointer}a{text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #cf5c31;outline-offset:3px}
+.reader{width:min(100% - 32px,900px);min-height:64px;margin:auto;display:flex;align-items:center;justify-content:space-between;color:#eee7da;font-size:14px;gap:12px}
+.reader button,.reader a,.modal-actions button,.modal-actions a{border:0;background:none;padding:8px 12px;line-height:1.2}
+.langs,.actions{display:flex;align-items:center;gap:3px}.reader .langs button[aria-pressed=true]{border-bottom:1px solid #f1d6a5}
+.reader .actions a:last-child{color:#243130;background:#eddfc9;border-radius:3px}
+.reader button:hover,.reader a:hover,.modal-actions button:hover,.modal-actions a:hover{text-decoration:underline}
+main{padding:0 16px 32px}#scroll-area{max-width:900px;margin:auto;overflow:auto}#paper-size{position:relative;overflow:hidden;margin:auto}
+.poster{width:800px;height:1000px;transform-origin:top left;background:#f8ecda;color:#172b30;display:grid;grid-template-rows:266px 448px 235px 51px;overflow:hidden;position:relative}
+.hero{isolation:isolate;position:relative;background:#0d222c;overflow:hidden;color:#fff3dd}
+.hero>img{position:absolute;inset:0 0 0 auto;width:81%;height:100%;object-fit:cover;object-position:53% 56%;z-index:-2}
+.hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#102530 0%,#102530 14%,rgba(13,34,44,.96) 24%,rgba(13,34,44,.8) 34%,rgba(13,34,44,.14) 53%,transparent 64%)}
+.hero-copy{position:absolute;inset:25px 30px}
+.film-name{font-weight:640;letter-spacing:.12em;font-size:15px;line-height:1.3}.film-name span{color:#e6a37a;margin:0 3px}
+h1,h2,figure,p{margin:0}
+h1{font:400 72px/.88 Print,Georgia,serif;letter-spacing:-.025em;margin-top:21px}
+h1>span,h1>em{display:block}h1>em{font-weight:400;color:#f6c49a}
+.hero-meta{display:flex;gap:9px;align-items:center;font-size:17px;letter-spacing:.025em;position:absolute;bottom:0;left:0;color:#efdfcc;font-variant-numeric:tabular-nums}
+.hero-meta b{width:22px;height:1px;background:#c98e65}
+.route{background:#f8ead7;display:grid;grid-template-rows:52px 279px 117px;border-bottom:1px solid #a6937c}
+.route-header{padding:16px 30px 0;display:flex;align-items:baseline;justify-content:space-between;z-index:1}
+.route h2,.proof h2{font:400 33px/1.06 Print,Georgia,serif;letter-spacing:-.025em}
+.toolname{font-size:17px;letter-spacing:.005em;font-weight:570;color:#594c3f}.toolname i{font-weight:400;font-style:normal;color:#a9482d}
+.model{width:100%;position:relative;overflow:hidden}.model img{width:100%;height:100%;object-fit:cover;object-position:center 52%;display:block}
+.model:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#f8ead7 0,transparent 9%,transparent 94%,#f8ead7 100%)}
+.stations{display:grid;grid-template-columns:repeat(4,1fr);padding:0 29px;gap:14px}
+.station,.proof{text-align:left;border:0;background:none;color:inherit;padding:0;display:block;font-family:inherit;appearance:none}
+.station{position:relative;align-self:start;border-top:1px solid #a48c71;padding-top:6px}.station:before{content:"";position:absolute;top:-5px;left:0;width:1px;height:7px;background:#996d4b}
+.station time{display:block;color:#8c462d;font:600 13px/1.2 Instrument,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.045em}
+.station strong{display:block;font-weight:680;font-size:20px;line-height:1.18;margin:4px 0 3px;letter-spacing:-.04em}
+.station>span{display:block;color:#493f37;font-size:16px;line-height:1.19;font-weight:470;max-width:170px}
+.proofs{padding:19px 30px 12px;display:grid;grid-template-columns:1fr 1fr;gap:22px;background:#faf3e6}
+.proof{align-self:start;min-width:0}.proof h2{font-size:32px;margin:0 0 12px}
+.triptych,.crops{height:106px;display:grid;gap:3px;overflow:hidden;background:#f5e9d9}
+.triptych{grid-template-columns:1fr 1fr 1fr}.triptych img,.crops img{display:block;width:100%;height:100%;object-fit:cover}
+.triptych img:first-child{object-position:62% 52%}.triptych img:nth-child(2){object-position:65% 50%}.triptych img:nth-child(3){object-position:56% 46%}
+.crops{grid-template-columns:1fr 1fr}.crops>div{min-width:0;position:relative;overflow:hidden}
+.crops img{object-position:25% center}.crops span{position:absolute;left:4px;bottom:4px;background:#0c222ee8;color:#fff4df;padding:2px 6px;font-size:15px;line-height:1.1}
+.proof p{margin-top:10px;color:#393d3c;font-size:18px;line-height:1.22;font-weight:470}
+.colophon{display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:#192f35;color:#f5e8d5;font-size:13px;font-weight:460}.colophon .author{font-size:17px;font-weight:600}.colophon>div{display:grid;text-align:right;line-height:1.3}.colophon a{color:#f2caac;font-size:15px}.colophon a:hover{text-decoration:underline}
+.station:hover strong,.proof:hover h2{color:#9d3a23}html.export .station:hover strong,html.export .proof:hover h2{color:inherit}
+[lang="zh-CN"] h1{font:600 53px/1.17 "Songti SC","STSong","PingFang SC",serif;margin-top:17px;letter-spacing:.005em}
+[lang="zh-CN"] h1>em{font-style:normal;font-weight:600}
+[lang="zh-CN"] .route h2,[lang="zh-CN"] .proof h2{font:650 27px/1.12 "Songti SC","STSong","PingFang SC",serif;letter-spacing:0}
+[lang="zh-CN"] .station strong{letter-spacing:0;font-size:18px}[lang="zh-CN"] .station>span{font-size:15px;line-height:1.32}
+[lang="zh-CN"] .proof p{font-size:17px;line-height:1.4}
+dialog{width:min(700px,calc(100% - 24px));max-height:92dvh;padding:16px 24px 20px;color:#142d34;background:#fcf2e3;border:1px solid #9e896e;border-radius:3px;overflow:auto}
+dialog::backdrop{background:#091a21cc}.dialog-bar,.modal-actions,.range-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.dialog-bar{font-weight:640;font-size:13px;letter-spacing:.05em;color:#904127}
+#close{background:none;border:0;font-size:30px;line-height:1;padding:1px 5px}#modal-title{font:400 42px/1.06 Print,"Songti SC",Georgia,serif;margin:7px 0 16px}
+#view{position:relative;line-height:0;overflow:hidden;background:#e8d8bd}#view img{width:100%;height:auto;display:block}.modal-triplet{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}.modal-triplet img{aspect-ratio:1.09;object-fit:cover}
+#view .front{position:absolute;inset:0;height:100%;width:100%;clip-path:inset(0 50% 0 0)}
+#view .split{position:absolute;top:0;bottom:0;left:50%;border-left:2px solid #fff7d7}
+.range-row{margin:10px 0 2px;font-size:14px}.range-row input{accent-color:#95502e;width:47%}#modal-text{font-size:18px;line-height:1.45;margin:14px 0 20px}
+.modal-actions{justify-content:flex-start;border-top:1px solid #bdad96;padding-top:10px;gap:6px}.modal-actions button{padding-left:0;padding-right:14px}.modal-actions a{margin-left:auto;font-weight:620;color:#8c3b25}
+[hidden]{display:none!important}
+@media(max-width:580px){main{padding:0 0 20px}.reader{width:calc(100% - 12px);min-height:49px;font-size:12px}.reader button,.reader a{padding:7px 6px}.actions{gap:1px}dialog{padding:13px 14px}#modal-title{font-size:33px}#modal-text{font-size:16px;line-height:1.42}}
+@media(prefers-reduced-motion:no-preference){.station strong,.proof h2{transition:color .15s ease}}
+html.export,html.export body{background:#f8ecda}html.export nav{display:none}html.export main{padding:0}html.export #scroll-area{max-width:none;margin:0;overflow:visible}
+
+#book{width:800px;display:grid;gap:16px;transform-origin:top left}
+.reader select{color:inherit;background:#243336;border:1px solid #536060;border-radius:3px;font:inherit;padding:6px;cursor:pointer;max-width:144px}
+.reader{position:sticky;top:0;z-index:4;background:#1c2426}
+#book>article{scroll-margin-top:66px}
+.stack{padding:15px 30px 14px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;column-gap:24px;row-gap:11px;background:#faf1e1}
+.stack>div,.stack>button{padding:8px 0 0;border:0;border-top:1px solid #b39b7c;background:none;color:inherit;font:inherit;text-align:left;align-self:stretch;display:flex;flex-direction:column;justify-content:flex-start}
+.stack strong{font-size:21px;line-height:1.16;letter-spacing:-.033em;font-weight:680}
+.stack p{margin:5px 0 0;line-height:1.25;font-size:17px;color:#47483f}
+.stack-action:hover strong{color:#a04d30}
+.plate{width:800px;height:1000px;display:flex;flex-direction:column;background:#faf1e2;color:#183038;overflow:hidden;position:relative}
+.platehead{padding:22px 30px 17px;flex:none}
+.folio{display:flex;align-items:center;justify-content:space-between;line-height:1.15;border-bottom:1px solid #a79174;padding-bottom:8px;color:#784c34;font-size:15px;font-weight:580}
+.folio b{letter-spacing:.13em;font-size:15px;color:#193239;font-weight:700}
+.platehead h2{font:400 55px/1.03 Print,Georgia,serif;letter-spacing:-.027em;margin:14px 0 7px}
+.platehead p{font-size:21px;font-weight:470;line-height:1.27;max-width:735px;color:#394348;letter-spacing:-.013em}
+.platebody{display:flex;flex-direction:column;justify-content:space-between;gap:12px;flex:1;min-height:0;padding:0 30px 20px}
+.platebody>*{flex:none}
+.duo,.bird-bottom,.cueframes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plate figure{min-width:0}
+.plate figure img,.region-picture canvas{display:block;width:100%;height:100%;object-fit:cover}
+.plate figcaption{padding-top:7px}
+.plate figcaption>b,.plate figcaption>span{display:block}
+.plate figcaption>b,.compare-proof>b,.textband>b,.recipe b,.pipeline>b,.plothead strong{font-size:20px;font-weight:680;line-height:1.12;letter-spacing:-.023em}
+.plate figcaption>span,.compare-proof>span{font-size:17px;line-height:1.23;color:#444b48;display:block;margin-top:3px}
+.imgscene,.region-picture{overflow:hidden;position:relative;background:#182d35}
+.widefig .imgscene{height:176px}
+.wire img{object-fit:contain!important}
+.lensfig .imgscene{height:147px}
+.eye-pin{position:absolute;left:66.9%;top:50.6%;transform:translate(-50%,-50%);width:25px;height:25px;border:1.5px solid #ffdd86;border-radius:50%;filter:drop-shadow(0 0 2px #16262a)}
+.eye-pin:before,.eye-pin:after{position:absolute;content:'';background:#ffeab3;left:50%;top:50%;transform:translate(-50%,-50%)}
+.eye-pin:before{height:1.5px;width:34px}.eye-pin:after{height:34px;width:1.5px}
+.math-note,.pipeline{background:#17343c;color:#fbf2de;padding:14px 18px 13px}
+.math-title,.plothead{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.math-title>b,.pipeline>b{font-size:19px;line-height:1.15;font-weight:640}
+.math-title>span{font-size:15px;color:#ddc6a4;white-space:nowrap}
+.math-note code,.pipeline code{font:500 25px/1.15 ui-monospace,Menlo,monospace;display:block;letter-spacing:-.04em;margin:6px 0;color:#f9c58c}
+.math-note sup{font-size:.65em}
+.math-note p,.pipeline p{line-height:1.28;font-size:17.5px;color:#f3e7d7;font-weight:440}
+.textband{border-top:1px solid #a59074;padding-top:9px}
+.textband p,.recipe p,.region-notes p{font-size:18px;line-height:1.25;color:#394544;margin:4px 0 0}
+.sheetfoot{display:flex;align-items:center;gap:18px;padding:0 30px;background:#192f35;color:#f3e5d0;height:42px;flex:none;font-size:14px}
+.sheetfoot>span{margin-right:auto;font-size:16px;font-weight:650}
+.sheetfoot a{color:#f1ccb0}.sheetfoot a:hover,.project-url:hover{text-decoration:underline}
+.bird-build{display:grid;grid-template-columns:29% 1fr;grid-template-rows:1fr 1fr;column-gap:17px;row-gap:9px}
+.small-view{grid-column:1}.big-view{grid-column:2;grid-row:1 / span 2;display:flex;flex-direction:column}
+.bird-build .small-view img{height:81px;object-fit:contain;background:#132a33}
+.bird-build .small-view:first-child img{object-fit:cover;object-position:50% 46%}
+.bird-build .big-view img{height:211px;object-fit:contain;background:#132a33}
+.small-view figcaption{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 7px;padding-top:5px}
+.small-view figcaption>b{font-size:18px}.small-view figcaption>span{font-size:15px;margin:0}
+.birdcard .math-note code{font-size:21px}
+.bird-bottom figure>img{height:139px}.bird-bottom figure:first-child>img{object-fit:contain;background:#f0dfbf}
+.compare-proof{border:0;background:none;padding:0;font:inherit;text-align:left;color:inherit}
+.compare-proof .crops{height:168px;gap:4px}.compare-proof .crops img{object-fit:fill;object-position:center}
+.compare-proof .crops span{left:8px;bottom:7px;font-size:16px;padding:4px 8px}
+.compare-proof>b{display:block;margin-top:8px}
+.repaintrow{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;align-items:center}
+.region-picture{aspect-ratio:1672 / 941}
+.region-picture canvas{position:absolute;inset:0}
+.region-notes strong{font:400 51px/.98 Print,Georgia,serif;letter-spacing:-.035em;color:#9b462e}
+.region-notes p{margin-top:10px;font-size:19px;line-height:1.27}
+.recipe>div{display:grid;grid-template-columns:195px 1fr;align-items:baseline;gap:12px;border-top:1px solid #aa9579;padding:8px 0}
+.recipe>div:last-child{padding-bottom:0}
+.recipe p{margin:0;font-size:17.5px;line-height:1.24}
+.waveplot{background:#17343c;color:#f6e8cf;padding:13px 15px 10px}
+.plothead strong{font-size:20px}.plothead>span{font-size:16px;color:#f6c897}
+#waveplot{height:76px;width:100%;display:block;margin:8px 0 4px}
+.plotlegend{display:flex;justify-content:space-between;align-items:center;color:#ecdcc5;font-size:14px}
+.cueframes{grid-template-columns:repeat(3,1fr);gap:10px}
+.cueframes figure>img{height:133px}
+.cueframes figcaption{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.cueframes figcaption>b{font-size:18px;color:#9a452b}.cueframes figcaption>span{margin:0;font-size:16px}
+.pipeline{padding:15px 18px 14px}.pipeline p{margin:5px 0 8px}.pipeline code{font-size:23px;margin:0}
+.project-url{border:1px solid #a38f73;padding:9px 12px;display:flex;align-items:baseline;gap:11px;font-size:16px;justify-content:space-between}
+.project-url b{font-size:17px;letter-spacing:-.02em}
+[lang="zh-CN"] .platehead h2{font:600 39px/1.17 "Songti SC","STSong","PingFang SC",serif;letter-spacing:0;margin:13px 0 9px}
+[lang="zh-CN"] .platehead p{font-size:20px;line-height:1.4}
+[lang="zh-CN"] .plate figcaption>span,[lang="zh-CN"] .stack p,[lang="zh-CN"] .recipe p{line-height:1.35}
+[lang="zh-CN"] .big-view figcaption>span{max-width:480px}
+[lang="zh-CN"] .plate figcaption>b,[lang="zh-CN"] .recipe b{letter-spacing:0}
+[lang="zh-CN"] .math-note p,[lang="zh-CN"] .pipeline p{line-height:1.4}
+@media(max-width:580px){.reader{gap:3px}.reader select{padding:5px 2px;max-width:96px}.reader button,.reader a{padding:7px 4px}#book>article{scroll-margin-top:50px}}
+.bird-build .small-view img{height:99px;object-fit:contain}
+.bird-build .small-view:first-child img{object-fit:contain;background:#948a82}
+.bird-build .small-view:nth-child(2) img,.bird-build .big-view img{background:#233943}
+.bird-build .big-view img{height:235px}
+.bird-bottom figure:first-child>img{background:#f5e9d7}
+.compare-proof .crops img{object-fit:cover}
+
+@font-face{font-family:GuideHand;src:url(making-of-src/art/balsamiq-bold.woff2) format("woff2");font-style:normal;font-weight:650 900;font-display:swap}
+:root{--ink:#1f232a;--blue:#0052d9;--sub:#47515e;--rule:#cad2dc;--paper:#fdfefd;--dots:radial-gradient(#dce3e9 .8px,transparent .95px);--hand:GuideHand,"Chalkboard SE","Hannotate SC","PingFang SC",sans-serif}
+html,body{background:#edf0f2;color:var(--ink)}
+.reader{color:var(--ink);background:#fbfdfcf7;border-bottom:1px solid #d5dce2;max-width:900px;min-height:56px;margin-bottom:12px;padding:0 10px;backdrop-filter:blur(9px)}
+.langs{padding:2px;background:#fff;border:1.25px solid #30363b;border-radius:7px 6px 7px 5px}
+.reader .langs button{border:0;border-radius:4px;padding:5px 9px;color:var(--ink)}
+.reader .langs button[aria-pressed=true]{background:var(--blue);color:#fff;border:0}
+.reader select{color:#2c3848;background:#fff;border:1px solid #aebbc9;border-radius:5px;font-weight:580}
+.reader .actions a:last-child{color:white;background:var(--blue);border-radius:5px}
+.reader a,.reader button{font-weight:550}
+#book{gap:20px}#scroll-area{max-width:900px}
+.poster,.plate{background-color:var(--paper);background-image:var(--dots);background-size:22px 22px;color:var(--ink)}
+.poster{grid-template-rows:262px 436px 247px 55px}
+.hero{background:transparent;color:var(--ink);isolation:auto}
+.hero>img{width:48%;height:210px;inset:25px 25px auto auto;z-index:0;object-fit:cover;object-position:52% 50%;border:1.7px solid var(--ink);border-radius:16px 6px 17px 7px / 7px 14px 6px 15px;box-shadow:3px 3px 0 #20252e}
+.hero-shade{display:none}.hero-copy{inset:25px auto 28px 29px;width:340px}
+.film-name{color:var(--blue);font-size:15px;font-weight:720;letter-spacing:.075em}.film-name span{color:#667685}
+h1{font:700 51px/.99 var(--hand);margin:23px 0 0;letter-spacing:-.045em}
+h1>em{position:relative;color:var(--blue);font-style:normal;font-weight:700;width:max-content;isolation:isolate}
+h1>em:after{content:"";position:absolute;left:1%;right:0;height:8px;bottom:0;z-index:-1;background:#ffe167;border-radius:51% 36% 28% 40%;transform:rotate(-1.5deg)}
+.hero-meta{color:#3a4653;font-size:17px;font-weight:600}.hero-meta b{background:#0052d9;width:15px;height:2px}
+.route{border:1.7px solid var(--ink);border-radius:14px 7px 12px 7px / 7px 13px 7px 13px;margin:0 24px;background:#fff;grid-template-rows:47px 260px 125px;overflow:hidden}
+.route-header{padding:12px 15px 0}
+.route h2{font:700 28px/1.08 var(--hand);letter-spacing:-.04em}
+.toolname{font-size:15px;color:#0052c9;font-weight:680}.toolname i{color:#24364b}
+.model{width:calc(100% - 28px);margin:0 14px;border:1px solid #dbe1e4;border-radius:6px 5px 7px 4px}
+.model img{object-position:center 57%;object-fit:cover}
+.model:after{display:none}
+.stations{padding:12px 14px 0;gap:11px}
+.station{padding-top:7px;border-top:2px solid var(--step);--step:#0052d9}
+.station:nth-child(1){--step:#b8491d}.station:nth-child(2){--step:#a62d36}.station:nth-child(3){--step:#164fa6}.station:nth-child(4){--step:#006c7c}
+.station:before{display:none}
+.station time{color:var(--step);font-size:14px;font-weight:730;letter-spacing:0}
+.station strong{color:var(--ink);font:700 19px/1.13 var(--hand);letter-spacing:-.025em;margin:4px 0}
+.station>span{color:#414b57;font-weight:460;line-height:1.23}
+.stack{padding:15px 25px;column-gap:13px;row-gap:10px;background:transparent}
+.stack>div,.stack>button{padding:8px 12px 9px;border:1.2px solid #acb9c8;border-radius:8px 5px 8px 5px;background:#f3f7fe}
+.stack>div:nth-child(2){background:#f4f7f4;border-color:#adbfb1}
+.stack>div:nth-child(3){background:#f1f7fa;border-color:#a6bdc6}
+.stack>div:nth-child(4){background:#f5f3fd;border-color:#bcb3d2}
+.stack strong{font:700 20px/1.16 var(--hand);letter-spacing:-.02em}
+.stack p{color:#38434e;font-size:17px;line-height:1.24;margin-top:4px}
+.stack-action:hover strong,.station:hover strong{color:var(--blue)}
+.colophon,.sheetfoot{background:#fff;color:var(--ink);border-top:1px solid #aebac7;padding:0 27px}
+.colophon .author,.sheetfoot>span{font:700 18px/1.1 var(--hand);color:#1f2429}
+.colophon a,.sheetfoot a{color:#004db7;font-weight:580}
+.colophon>div>span{color:#556373}
+.plate{--accent:#0052d9;--panel:#edf4ff}
+.geometry{--accent:#006780;--panel:#eaf6f7}
+.birdcard{--accent:#0052c8;--panel:#edf3ff}
+.texturecard{--accent:#a33f0a;--panel:#fff3e6}
+.timingcard{--accent:#5e3f99;--panel:#f1eef9}
+.platehead{padding:19px 26px 14px}
+.folio{padding:0 0 9px;border-bottom:1px solid #b6c1cc;color:var(--accent);font-size:15px;font-weight:680}
+.folio b{font:700 18px/1 var(--hand);letter-spacing:.025em;color:#202934}
+.platehead h2{font:700 42px/1.07 var(--hand);letter-spacing:-.042em;margin:15px 0 8px;color:#1d222a}
+.platehead p{background:transparent;color:#35414c;font-size:21px;line-height:1.28;font-weight:460}
+.platebody{padding:0 26px 18px;gap:9px}
+.platebody figure img,.imgscene,.region-picture,.compare-proof .crops>div{border-radius:8px 4px 7px 4px}
+.imgscene,.bird-build figure>img,.bird-bottom figure>img,.cueframes figure>img,.region-picture,.compare-proof .crops>div{border:1.25px solid #273544}
+.imgscene{background:#f0f5fa}
+.plate figcaption>b,.textband>b,.recipe b,.pipeline>b,.plothead strong,.math-title>b{font:700 20px/1.15 var(--hand);letter-spacing:-.026em}
+.plate figcaption>span,.compare-proof>span{color:#3b4752;font-size:17px}
+.math-note,.pipeline,.waveplot{border:1.4px solid #263542;border-radius:10px 5px 9px 6px / 5px 9px 6px 8px;background:var(--panel);color:var(--ink);box-shadow:2px 2px 0 #293642}
+.math-title>span,.plothead>span{color:var(--accent);font-weight:680}
+.math-note code,.pipeline code{font-size:24px;color:var(--accent);font-weight:650}
+.math-note p,.pipeline p{color:#34414d;font-weight:450}
+.textband{border-top:1px dashed #9faeba;padding-top:8px}
+.textband p,.recipe p,.region-notes p{color:#35434e}
+.eye-pin{border-color:#ffdb49;box-shadow:0 0 0 1px #273a45}.eye-pin:before,.eye-pin:after{background:#ffe565}
+.bird-build .big-view img,.bird-build .small-view:nth-child(2) img{background:#eaf1f8}
+.bird-build .big-view img{object-fit:contain}
+.birdcard .math-note code{font-size:21px;letter-spacing:-.05em}
+.compare-proof .crops{background:transparent;height:174px;gap:7px}
+.compare-proof .crops span{border:1px solid #26374b;background:white;color:#202935;border-radius:4px;font-size:15px;font-weight:670}
+.compare-proof .crops>div:nth-child(2) span{color:white;background:var(--blue)}
+.region-notes strong{font:700 44px/1 var(--hand);color:var(--accent);letter-spacing:-.04em}
+.recipe>div{border-color:#b3bfca}.recipe>div:first-child{border-top:2px solid var(--accent)}
+.plothead strong{color:var(--ink)}.plotlegend{color:#4a405f}.cueframes figcaption>b{color:var(--accent)}
+.project-url{background:#fff;color:#163451;border:1.2px solid #7196c3;border-radius:6px}.project-url b{color:#004cb6}
+dialog{background:#fff;color:var(--ink);border:1.5px solid #253647;border-radius:12px 7px 11px 7px}
+dialog::backdrop{background:#15253bc4}#modal-title{font:700 34px/1.1 var(--hand);letter-spacing:-.035em}
+.dialog-bar,.modal-actions a{color:var(--blue)}.modal-actions{border-color:#c2ceda}.range-row input{accent-color:var(--blue)}
+[lang="zh-CN"] h1{font:700 41px/1.21 "Hannotate SC","Kaiti SC","PingFang SC",sans-serif;margin-top:18px;letter-spacing:0}
+[lang="zh-CN"] .platehead h2,[lang="zh-CN"] .route h2{font-family:"Hannotate SC","Kaiti SC","PingFang SC",sans-serif;letter-spacing:0}
+[lang="zh-CN"] .stack strong,[lang="zh-CN"] .station strong{font-family:var(--hand);letter-spacing:0}
+html.export,html.export body{background:#fff}
+@media(max-width:580px){.reader{min-height:46px;padding:0 3px;width:100%;margin-bottom:5px}.reader .langs button{padding:5px 6px}}
+.promptcard{--accent:#0752bf;--panel:#edf4ff}
+.tiletrip{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.tiletrip figure>img{display:block;aspect-ratio:668 / 558;object-fit:contain;height:auto;max-height:192px;background:#eff3f8;border:1.2px solid #273544}
+.tiletrip figcaption>b{font-size:19px}
+.prompt-note{border:1.4px solid #28374b;border-radius:9px 5px 8px 5px;background:#edf4ff;padding:13px 16px;box-shadow:2px 2px 0 #273544}
+.prompt-note>b,.registration b{font:700 20px/1.15 var(--hand);letter-spacing:-.02em}
+.prompt-note blockquote{margin:7px 0 0 0;color:#194d99;font-size:20px;font-weight:600;line-height:1.25}
+.prompt-note p,.registration p{font-size:17px;line-height:1.26;color:#35434e;margin-top:8px}
+.registration{display:grid;grid-template-columns:155px 171px 1fr;align-items:center;gap:15px;padding:12px 0;border-block:1px solid #bac5d0}
+.registration strong,.registration b{display:block}.registration strong{font:700 36px/1.06 var(--hand);color:#0052bb;letter-spacing:-.035em}
+.registration b{font:590 16px/1.22 Instrument,sans-serif;letter-spacing:0;margin-top:4px}.registration p{margin:0}
+.promptcard .textband{border:0;padding:0}.promptcard .textband code{display:inline-block;background:#edf3fd;border:1px solid #c1cfe1;padding:2px 7px;border-radius:4px;color:#0c458c;font:650 17px/1.25 ui-monospace,Menlo,monospace;margin-top:5px}
+
+@font-face{font-family:Bricolage;src:url(making-of-src/art/bricolage.woff2) format("woff2");font-weight:200 800;font-style:normal;font-display:swap}
+:root{--display:Bricolage,Instrument,"PingFang SC",sans-serif;--ink:#101922;--blue:#124fe3;--text:#253340;--pale:#edf3ff;--hair:#cdd7df}
+html,body{background:#eef2f5;color:var(--ink)}
+.poster,.plate{background:#fff;color:var(--ink)}
+.poster{grid-template-rows:51px 225px 421px 303px}
+.folio{display:flex;align-items:baseline;justify-content:space-between;padding:0 0 10px;color:var(--ink);border:0;border-bottom:1px solid var(--hair)}
+.folio b,.folio .page-num{font:700 18px/1.04 var(--display);letter-spacing:-.025em;color:var(--ink)}
+.folio b{display:flex;align-items:baseline;gap:8px}
+.folio b>span{color:#b5c2cd;font-weight:430}
+.folio b>em{font:580 16.5px/1 Instrument,"PingFang SC",sans-serif;letter-spacing:0;color:#4b5c6b}
+.folio .page-num{font-variant-numeric:tabular-nums;color:var(--blue);font-weight:760;white-space:nowrap}
+.page-num i{font-style:normal;color:#5f6e79;font-weight:470}
+.cover-folio{margin:0 29px;padding-top:20px}
+.cover-folio b{letter-spacing:.02em;font-size:16px}
+.hero{overflow:visible;background:#fff}
+.hero>img{width:48.2%;height:197px;inset:12px 29px auto auto;border:0;border-radius:4px;box-shadow:none}
+.hero-copy{inset:10px auto 20px 28px;width:46%}
+h1{font:780 52px/.965 var(--display);letter-spacing:-.058em;margin:14px 0 0}
+h1>em{color:var(--blue);font-style:normal;font-weight:780}
+h1>em:after{height:5px;bottom:-4px;left:0;right:4%;background:#ffd454;transform:rotate(-1.5deg)}
+.hero-meta{font-size:18px;font-weight:550;gap:12px;color:#465666;bottom:3px}
+.route{margin:0 28px;border:0;border-radius:0;grid-template-rows:42px 260px 119px}
+.route-header{padding:0;align-items:baseline}
+.route h2{font:710 29px/1.12 var(--display);letter-spacing:-.045em}
+.model{width:100%;margin:0;border:none;border-radius:4px;background:#f9eddb;}
+.model img{object-fit:cover;object-position:50% 54%}
+.stations{gap:15px;padding:13px 0 0}
+.station{border-top:1px solid #aebac6;padding-top:7px}
+.station time{font:680 15px/1.15 var(--display);color:#1652a9}
+.station strong{font:730 21px/1.09 var(--display);letter-spacing:-.04em}
+.station>span{font-size:18px;line-height:1.2;color:var(--text)}
+.stack{padding:14px 28px 23px;margin:0;gap:16px 24px;background:#fff}
+.stack>div,.stack>button,.stack>div:nth-child(n){padding:12px 0 0;background:white;border:0;border-top:2px solid #172a3b;border-radius:0}
+.stack strong{font:720 23px/1.05 var(--display);letter-spacing:-.045em}
+.stack p{font-size:20px;line-height:1.24;color:var(--text);margin-top:6px}
+.plate{--accent:#124aba;--panel:#edf3ff}
+.platehead{padding:19px 29px 16px}
+.platehead h2{font:760 43px/1.03 var(--display);letter-spacing:-.058em;color:#121c26;margin:17px 0 9px}
+.platehead p{font-size:22px;line-height:1.24;font-weight:460;color:var(--text);letter-spacing:-.015em}
+.platebody{padding:0 29px 25px;gap:11px}
+.plate figcaption{padding-top:7px}
+.plate figcaption>b,.textband>b,.recipe b,.pipeline>b,.plothead strong,.math-title>b,.prompt-note>b{font:715 22px/1.09 var(--display);color:var(--ink);letter-spacing:-.045em}
+.plate figcaption>span,.compare-proof>span{font-size:19px;line-height:1.21;color:#374655}
+.plate figure img,.imgscene,.region-picture,.compare-proof .crops>div,.bird-build figure>img,.bird-bottom figure>img,.cueframes figure>img{border:0;border-radius:4px}
+.widefig .imgscene{height:191px}.lensfig .imgscene{height:155px}
+.math-note,.pipeline,.waveplot,.prompt-note{border:0;border-left:3px solid #1855d3;border-radius:0 4px 4px 0;background:#eff4ff;box-shadow:none;padding:14px 17px}
+.math-note p,.pipeline p,.prompt-note p{color:var(--text);font-size:19.5px;line-height:1.23;}
+.math-note code,.pipeline code{color:#1248ba;font-size:26px;font-weight:620}
+.math-title>span,.plothead>span{font-size:17px;color:#254c90}
+.textband{border-top:1px solid #b8c5d1;padding-top:11px}
+.textband p,.recipe p,.region-notes p{font-size:20px;line-height:1.24;color:var(--text)}
+.bird-build{grid-template-columns:28% 1fr;gap:12px 18px}
+.bird-build .small-view img{height:104px}
+.bird-build .big-view img{height:242px}
+.small-view figcaption>b{font-size:20px}.small-view figcaption>span{font-size:17px}
+.birdcard .math-note code{font-size:22px}
+.bird-bottom figure>img{height:148px}
+.compare-proof .crops{height:184px;gap:8px}
+.compare-proof .crops span{left:8px;bottom:8px;border:none;border-radius:3px;font:650 17px/1.1 Instrument,sans-serif}
+.region-notes strong{font:730 49px/.98 var(--display);letter-spacing:-.065em;color:#134bb8}
+.region-notes p{font-size:21px}
+.recipe>div{grid-template-columns:197px 1fr;border-top:1px solid var(--hair);padding:9px 0}
+.recipe>div:first-child{border-top:1.8px solid #273847}
+.tiletrip figure>img{max-height:180px;border:0}
+.tiletrip figcaption>b{font-size:21px}
+.prompt-note blockquote{font-size:22px;line-height:1.2;font-weight:600;color:#144493}
+.registration{border-color:var(--hair);grid-template-columns:155px 174px 1fr}
+.registration strong{font:740 39px/.99 var(--display);color:#1748b2;letter-spacing:-.055em}
+.registration b{font:600 18px/1.15 Instrument,sans-serif}.registration p{font-size:19px;color:var(--text)}
+.promptcard .textband code{font-size:20px}
+.plothead strong{font-size:22px}
+.waveplot{background:#f3f2fa;border-color:#7153a0}
+#waveplot{height:96px}
+.plotlegend{font-size:16px}
+.cueframes figure>img{height:154px}
+.cueframes figcaption>b{font:720 21px/1.12 var(--display);color:#1748b2}
+.cueframes figcaption>span{font-size:18px}
+.pipeline{padding:16px 17px}
+.pipeline code{font-size:24px;margin:7px 0 1px}
+[lang="zh-CN"] .platehead h2,[lang="zh-CN"] .route h2,[lang="zh-CN"] h1{font-family:var(--display);font-weight:730;letter-spacing:-.025em;}
+[lang="zh-CN"] h1{font-size:41px;line-height:1.18}
+[lang="zh-CN"] .platehead h2{font-size:38px}
+[lang="zh-CN"] .station strong,[lang="zh-CN"] .stack strong{font-family:var(--display)}
+/* The reading edition reflows from its own type sizes. Print plates use the fixed artboard above. */
+html.reading main{padding:0 20px 36px}
+html.reading #scroll-area,html.reading .reader{width:100%;max-width:1024px;overflow:visible}
+html.reading #paper-size,html.reading #book{width:100%!important;height:auto!important;transform:none!important;overflow:visible}
+html.reading #book{display:block}
+html.reading .reader{padding:0 16px;min-height:54px;margin:0 auto 16px;background:#f9fbfdf5}
+html.reading .reader button,html.reading .reader select,html.reading .reader a{font-size:14px}
+html.reading .reader .source-link{color:#2050a8}
+html.reading #book>article{width:100%;height:auto;overflow:visible;margin-bottom:28px;border-radius:8px;box-shadow:0 2px 12px #1c365013;scroll-margin-top:65px}
+html.reading .poster{grid-template-rows:auto auto auto auto;display:block;padding:22px 32px 27px}
+html.reading .cover-folio{margin:0;padding:0 0 12px}
+html.reading .hero{height:auto;display:grid;grid-template-columns:1fr 1.06fr;align-items:center;gap:20px;padding:18px 0 24px}
+html.reading .hero-copy{grid-column:1;grid-row:1;position:static;width:auto}
+html.reading .hero>img{position:static;grid-column:2;grid-row:1;height:auto;width:100%;aspect-ratio:1.9;object-fit:cover}
+html.reading h1{font-size:clamp(45px,5.3vw,65px);margin:0}
+html.reading .hero-meta{position:static;margin-top:24px}
+html.reading .route{margin:0;display:block;overflow:visible}
+html.reading .route-header{margin:0 0 8px}
+html.reading .model{height:auto;aspect-ratio:2.65}
+html.reading .stations{margin-bottom:17px}
+html.reading .stack{padding:0;grid-template-rows:auto auto}
+html.reading .plate{padding:22px 32px 30px}
+html.reading .platehead{padding:0 0 17px}
+html.reading .platehead h2{font-size:clamp(37px,4vw,48px)}
+html.reading .platebody{padding:0;gap:23px}
+html.reading .widefig .imgscene,html.reading .lensfig .imgscene{height:auto;aspect-ratio:1.96}
+html.reading .widefig .imgscene>img,html.reading .lensfig .imgscene>img{position:absolute;inset:0}
+html.reading .bird-build .big-view img{height:288px}
+html.reading .bird-build .small-view img{height:117px}
+html.reading .region-picture,.reading .tiletrip figure>img{max-height:none}
+html.reading .cueframes figure>img,.reading .bird-bottom figure>img{height:auto;aspect-ratio:1.84}
+html.reading .cueframes figure>img{aspect-ratio:1.8}
+html.reading .compare-proof .crops{height:auto;aspect-ratio:4.55}
+html.reading .tiletrip figure>img{width:100%;height:auto}
+html.reading .plate figure img[role=button],html.reading .model img[role=button]{cursor:zoom-in}
+.big-inspect{width:min(1080px,calc(100% - 26px))}
+.big-inspect #view img{max-height:68dvh;object-fit:contain;background:#f0f5fa}
+.big-inspect .modal-actions{display:none}
+html.large-type.reading article p,html.large-type.reading article figcaption>span,html.large-type.reading .station>span{font-size:24px;line-height:1.44}
+@media(max-width:700px){
+ html.reading main{padding:0 0 22px}
+ html.reading .reader{min-height:46px;margin-bottom:0;padding:0 7px;gap:4px}
+ html.reading .reader button,html.reading .reader select,html.reading .reader a{font-size:12px}
+ html.reading .reader .source-link{display:none}
+ html.reading #book>article{margin:0 0 12px;border-radius:0;box-shadow:none;scroll-margin-top:48px}
+ html.reading .plate,html.reading .poster{padding:20px 17px 25px}
+ html.reading .folio{padding-bottom:9px}
+ html.reading .folio b,html.reading .folio .page-num{font-size:15px}
+ html.reading .folio b>em{font-size:14px}
+ html.reading .hero{grid-template-columns:1fr;gap:15px;padding:18px 0 22px}
+ html.reading .hero-copy{grid-column:1;grid-row:1}
+ html.reading .hero>img{grid-column:1;grid-row:2;aspect-ratio:2.06;width:100%}
+ html.reading h1{font-size:clamp(43px,10vw,60px)}
+ html.reading h1>span,html.reading h1>em{display:inline}
+ html.reading h1>span{margin-right:.19em}
+ html.reading .hero-meta{margin-top:10px;font-size:15px}
+ html.reading .route h2{font-size:25px}
+ html.reading .model{aspect-ratio:2.2}.reading .model img{object-fit:contain}
+ html.reading .stations{grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+ html.reading .station>span{max-width:none;font-size:16px}
+ html.reading .station strong,.reading .stack strong{font-size:20px}
+ html.reading .stack{grid-template-columns:1fr;gap:11px}
+ html.reading .stack>div,.reading .stack>button{border-top:1px solid #adb9c4;padding-top:10px}
+ html.reading .stack p,.reading .platebody p,.reading .platehead p,.reading .plate figcaption>span,.reading .compare-proof>span,.reading .registration p{font-size:17px;line-height:1.4}
+ html.reading .platebody{gap:19px}
+ html.reading .platehead{padding-bottom:16px}
+ html.reading .platehead h2{font-size:34px;line-height:1.06;margin:15px 0 10px}
+ html.reading .duo,html.reading .bird-bottom,html.reading .repaintrow{grid-template-columns:1fr;gap:16px}
+ html.reading .widefig .imgscene,.reading .lensfig .imgscene{aspect-ratio:1.85}
+ html.reading .bird-build{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:13px}
+ html.reading .bird-build .small-view{grid-row:1;grid-column:auto}
+ html.reading .bird-build .big-view{grid-column:1/-1;grid-row:2}
+ html.reading .bird-build .big-view img{height:auto;aspect-ratio:2.06}
+ html.reading .bird-build .small-view img{height:95px}
+ html.reading .bird-bottom figure:first-child>img{aspect-ratio:4.3}
+ html.reading .reflect,html.reading .recipe>div{grid-template-columns:1fr;gap:5px}
+ html.reading .math-note,.reading .pipeline,.reading .prompt-note,.reading .waveplot{padding:13px 11px}
+ html.reading .math-note code,.reading .pipeline code{font-size:clamp(15px,3.8vw,21px);white-space:normal;overflow-wrap:anywhere}
+ html.reading .math-title{align-items:flex-start}
+ html.reading .math-title>b,.reading .plothead strong{font-size:18px}
+ html.reading .math-title>span,.reading .plothead>span,.reading .plotlegend{font-size:13px}
+ html.reading .compare-proof .crops{aspect-ratio:3.55}
+ html.reading .repaintrow{gap:8px}.reading .region-notes p{margin-top:5px}
+ html.reading .tiletrip{grid-template-columns:1fr 1fr;gap:13px 9px}
+ html.reading .tiletrip>figure:last-child{grid-column:1/-1}
+ html.reading .tiletrip>figure:last-child img{aspect-ratio:2.4;object-fit:cover}
+ html.reading .tiletrip figcaption>b{font-size:17px}
+ html.reading .prompt-note blockquote{font-size:19px}
+ html.reading .registration{grid-template-columns:1fr 1fr;gap:12px}
+ html.reading .registration p{grid-column:1/-1}
+ html.reading .cueframes{grid-template-columns:1fr;gap:12px}
+ html.reading .cueframes figure{display:grid;grid-template-columns:52% 1fr;align-items:center;gap:12px}
+ html.reading .cueframes figcaption{display:block}
+ html.reading .cueframes figcaption>b,.reading .cueframes figcaption>span{display:block}
+ html.reading .plate figcaption>b,.reading .recipe b,.reading .pipeline>b,.reading .textband>b{font-size:20px}
+ html.large-type.reading article p,html.large-type.reading article figcaption>span,html.large-type.reading .station>span{font-size:21px;line-height:1.45}
+}
+</style></head>
+<body>
+<nav class="reader" aria-label="Poster controls">
+  <div class="langs"><button id="en" aria-pressed="true" lang="en">EN</button><button id="zh" aria-pressed="false" lang="zh-CN">中文</button></div>
+  <select id="chapter-nav" aria-label="Jump to a breakdown sheet"><option value="0" data-zh="总流程">Workflow</option><option value="1" data-zh="三维几何">Geometry</option><option value="2" data-zh="飞行绑定">Flight rig</option><option value="3" data-zh="材质精度">4K textures</option><option value="4" data-zh="实际提示词">ImageGen prompt</option><option value="5" data-zh="时间与导出">Rendering</option><option value="repo" data-zh="GitHub 源码">GitHub source ↗</option></select>
+  <div class="actions"><a class="source-link" href="https://github.com/Andy-Huang-SZU/riptide-flight" data-zh="源码">Source</a><button id="zoom" data-t="zoom">Zoom in</button><a id="download" download="Riptide-making-of.png" href="https://github.com/Andy-Huang-SZU/riptide-flight/releases/download/v1.0.0/Riptide-making-of.png" data-t="save">Save image</a><a href="index.html" data-t="watch">Play film</a></div>
+</nav>
+<main>
+  <div id="scroll-area"><div id="paper-size"><div id="book"><article class="poster" id="poster" aria-labelledby="title">
+    <div class="folio cover-folio"><b>RIPTIDE <span>/</span> THE SUN, AGAIN</b><span class="page-num">01 <i>/ 06</i></span></div>
+    <header class="hero">
+      <img id="hero-image" src="making-of-src/art/frame-wave.webp" alt="" width="1920" height="1080" draggable="false">
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+
+        <h1 id="title"><span data-t="title1">I built a tunnel</span><em data-t="title2">out of paint.</em></h1>
+        <div class="hero-meta"><span>26.5 s</span><b></b><span>4K / 60 fps</span></div>
+      </div>
+    </header>
+    <section class="route" aria-labelledby="route-title">
+      <div class="route-header"><h2 id="route-title" data-t="section">Inside the 3D set</h2></div>
+      <figure class="model"><img src="making-of-src/art/cutaway.webp" data-alt="modelAlt" alt="Illustrated cutaway from a torn sun print through hinged pages and an ink fissure into a curling painted wave." width="1962" height="801"></figure>
+      <div class="stations">
+        <button class="station" data-scene="tear"><time>00.62 s</time><strong data-t="tear">Tear the sky</strong><span data-t="tearShort">Split the landscape into three sheets.</span></button>
+        <button class="station" data-scene="fold"><time>10.53 s</time><strong data-t="fold">Hinge 22 pages</strong><span data-t="foldShort">Stamp four wing poses onto the paper.</span></button>
+        <button class="station" data-scene="bank"><time>14.78 s</time><strong data-t="bank">Bank the bird</strong><span data-t="bankShort">Tuck the wings to clear the ink walls.</span></button>
+        <button class="station" data-scene="peel"><time>21.43 s</time><strong data-t="peel">Peel the wave</strong><span data-t="peelShort">Unroll the brushstrokes to reveal the sun.</span></button>
+      </div>
+    </section>
+    <section class="stack" aria-label="Tools and handoffs">
+      <button type="button" class="stack-action" data-scene="art"><strong>ImageGen</strong><p data-zh="画出天空、岩层和巨浪，另生成一张燕子造型参考。">Paint three environments and a reference for the swallow.</p></button>
+      <div><strong>Tripo H3.1 → Blender</strong><p data-zh="从燕子参考图生成网格，为翅膀和尾羽绑定七根骨骼。">Make the mesh. Bind the wings and tail to seven bones.</p></div>
+      <div><strong>Codex + Three.js</strong><p data-zh="用代码搭印版、编排飞行路径，给浪壁写着色器，并测量过缝余量。">Write the tunnel shader, animate the gates and test the flight path.</p></div>
+      <div><strong>Suno · WebCodecs · FFmpeg</strong><p data-zh="从配乐标出动作拍点。浏览器逐帧绘制，最后合入立体声音轨。">Set 17 music cues. Encode 1,590 frames and add stereo sound.</p></div>
+    </section>
+  </article><article class="plate geometry" id="geometry" aria-labelledby="geo-title">
+  <header class="platehead">
+    <div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="几何构造">Set geometry</em></b><span class="page-num">02 <i>/ 06</i></span></div>
+    <h2 id="geo-title" data-zh="平面浪画的纵深从哪来？">How does a flat wave get depth?</h2>
+    <p data-zh="我给一张规则网格贴上浪画。顶点保留自己的取色位置，着色器把顶点推到不同的深度。">The shader pushes parts of a painted grid away from the camera. Each point keeps its original texture coordinates.</p>
+  </header>
+  <div class="platebody">
+    <div class="duo widefig">
+      <figure><div class="imgscene"><img src="making-of-src/art/plate-tide.webp" alt="Production wave texture"><i class="eye-pin"></i></div><figcaption><b data-zh="原始贴图">Flat texture</b><span data-zh="十字标在浪眼，UV 为 (0.669, 0.506)。">Crosshair at the eye, UV (0.669, 0.506).</span></figcaption></figure>
+      <figure><div class="imgscene wire"><img src="making-of-src/art/actual-wire-side.webp" alt="Outside view using the real vertex shader"></div><figcaption><b data-zh="同一张网格，从侧面看">The same grid from outside</b><span data-zh="剖开近侧，每五个网格间距画一条线。">Cutaway showing every fifth grid line.</span></figcaption></figure>
+    </div>
+    <div class="math-note"><div class="math-title"><b data-zh="离浪眼越近，表面被推得越远">Push the painted eye farther away</b><span>205 × 127 <span data-zh="格">cells</span></span></div>
+      <code>depth = 9.8 / (0.110 + r<sup>1.38</sup>)</code>
+      <p data-zh="r 是按宽高修正后的浪眼距离。r = 0.10 时深度约 64.6；r = 0.60 时约 16.2 个场景单位。">r is the aspect-corrected distance from the eye. At r = 0.10 the depth is 64.6 scene units. At r = 0.60 it is 16.2.</p>
+    </div>
+    <div class="duo lensfig">
+      <figure><div class="imgscene"><img src="making-of-src/art/actual-wire-eye.webp" alt="Grid as seen from the moving film camera"></div><figcaption><b data-zh="镜头里的网格">Through the film camera</b></figcaption></figure>
+      <figure><div class="imgscene"><img src="making-of-src/art/frame-wave.webp" alt="Finished wave frame at 17.17 seconds"></div><figcaption><b data-zh="同一机位，17.17 秒的成片">Finished frame, same lens · 17.17 s</b></figcaption></figure>
+    </div>
+    <div class="textband"><b data-zh="前半段怎样运动">What moves before the wave?</b><p data-zh="五道门各有三块印版，先错开让路。左右各十一张折页绕各自的书脊转动，最后两面墨墙合拢成一道裂口。">Five gates of three blocks open first. Then 22 pages swing on their hinges. Two ink walls close into the slit.</p></div>
+  </div>
+</article>
+<article class="plate birdcard" id="bird-sheet" aria-labelledby="bird-title">
+  <header class="platehead"><div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="角色与绑定">Flight rig</em></b><span class="page-num">03 <i>/ 06</i></span></div>
+    <h2 id="bird-title" data-zh="燕子为什么像在倒飞？">Why did the bird fly backward?</h2>
+    <p data-zh="测试片里的燕子看起来像在倒飞。我从模型上取喙尖与两个叉尾尖，用这三个真实顶点重新定朝向。">The early bird looked tail-first. Three points on the mesh told me which way its beak actually faced.</p>
+  </header>
+  <div class="platebody">
+    <div class="bird-build">
+      <figure class="small-view"><img src="making-of-src/art/bird-concept.jpg" alt="Original ImageGen bird reference"><figcaption><b>ImageGen</b><span data-zh="造型参考">Painted reference</span></figcaption></figure>
+      <figure class="small-view"><img src="making-of-src/art/actual-mesh.webp" alt="Wireframe detail at the outer wing of the studio mesh"><figcaption><b>Tripo H3.1</b><span data-zh="外翼局部 · 全身 47,432 面">Wing detail · 47,432 tris total</span></figcaption></figure>
+      <figure class="big-view"><img src="making-of-src/art/actual-rig.webp" alt="Actual studio swallow with seven joint pivots and measured forward arrow"><figcaption><b data-zh="Blender · 七骨骼绑定">Blender · seven-bone rig</b><span data-zh="躯干一根，左右肩、外翼和叉尾各一根。金点取自真实骨骼。">Body, paired shoulders, outer wings and tail branches. Gold dots are the actual joint pivots.</span></figcaption></figure>
+    </div>
+    <div class="math-note"><div class="math-title"><b data-zh="先找头尾，再让它贴合航线">Measure the heading, then follow the path</b></div>
+      <code>forward = normalize(bill − midpoint(tailL, tailR))</code>
+      <p data-zh="取前后相隔 18 毫秒的两个航点求切线，把头尾轴对齐切线。侧倾绕这根轴旋转；肩骨与外翼独立收拢。">Sample the path at t ± 9 ms to get its tangent. Point the beak along it. Roll around that axis and tuck the wings independently.</p>
+    </div>
+    <div class="bird-bottom"><figure><img src="making-of-src/art/actual-stamps.webp" alt="Four ink impressions from different phases of the real rig"><figcaption><b data-zh="运动本身也成了印刷素材">The rig makes its own prints</b><span data-zh="将四个翼姿渲染到离屏纹理，再把轮廓套印到折页上。">Render four wing poses to an offscreen texture. Stamp those silhouettes onto the hinged pages.</span></figcaption></figure>
+      <figure><img src="making-of-src/art/frame-rift.webp" alt="Actual studio swallow banked inside the ink fissure"><figcaption><b data-zh="14.78 秒 · 墨缝">14.78 s · the ink fissure</b><span data-zh="逐帧检查变形后的网格。过缝时测得最小余量为 0.348 个场景单位。">Check the deformed mesh frame by frame. Minimum measured clearance at the fissure was 0.348 scene units.</span></figcaption></figure></div>
+  </div>
+</article>
+<article class="plate texturecard" id="texture-sheet" aria-labelledby="texture-title">
+  <header class="platehead"><div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="纹理制作">Texture restoration</em></b><span class="page-num">04 <i>/ 06</i></span></div>
+    <h2 id="texture-title" data-zh="为什么第一版 4K 还是糊？">Why did the first 4K look soft?</h2>
+    <p data-zh="成片有 3840 × 2160 像素，但每张环境画只有 1672 × 941。浪尖掠过镜头时，一小块金色颜料占了数百个屏幕像素。">The frame was 3840 × 2160, but each painting was 1672 × 941. Close to the lens, one soft gold stroke filled hundreds of pixels.</p>
+  </header>
+  <div class="platebody">
+    <button class="compare-proof" data-scene="detail"><div class="crops"><div><img src="making-of-src/art/gold-first.png" alt="Soft gold rim in the previous UHD encode"><span data-t="before">First cut</span></div><div><img src="making-of-src/art/gold-final.png" alt="Separated gold ridges in the newer UHD encode"><span data-t="after">Final cut</span></div></div>
+      <span class="figline" data-zh="两部最终 MP4 同一帧同一位置，均取 470 × 204 像素。第 1030 帧，17.17 秒。">Two final MP4s, same 470 × 204-pixel window. Frame 1030 at 17.17 s.</span>
+    </button>
+    <div class="repaintrow"><figure><div class="region-picture"><img src="making-of-src/art/plate-tide.webp" alt="Actual source painting with six overlapping reference regions"><canvas id="regions" width="960" height="540" aria-hidden="true"></canvas></div><figcaption><b data-zh="浪壁分六块，边缘相互重叠">Six overlapping wave regions</b></figcaption></figure>
+      <div class="region-notes"><strong>6 + 4 + 2</strong><p data-zh="浪壁六块，岩层四块，山景两块。每块均把对应原画裁片交给 ImageGen 做参考。">Six wave, four rock and two sky repaints. Each ImageGen pass starts from its matching crop of the original.</p></div>
+    </div>
+    <div class="recipe">
+      <div><b data-zh="恢复底图">Restore the base</b><p data-zh="Real-ESRGAN x4 修复无损原画与局部新画，保留原来大色块的明暗关系。">Run Real-ESRGAN x4 on the lossless originals and the new detail paintings.</p></div>
+      <div><b data-zh="对齐新笔触">Register the marks</b><p data-zh="用 SIFT 特征点求初始对齐，再用光流修正局部漂移，把金边放回原来的轮廓。">Match SIFT features, then use optical flow to pull the gold back onto the original edge.</p></div>
+      <div><b data-zh="接回材质">Blend and remap</b><p data-zh="渐变混合重叠区，新纹理固定在表面 UV 上。最后得到三张 6688 × 3764 的贴图。">Feather the overlaps and keep the relief in surface UVs. The result is three 6688 × 3764 texture maps.</p></div>
+    </div>
+  </div>
+</article>
+<article class="plate promptcard" id="prompt-sheet" aria-labelledby="prompt-title">
+  <header class="platehead"><div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="真实提示词">ImageGen prompt</em></b><span class="page-num">05 <i>/ 06</i></span></div>
+    <h2 id="prompt-title" data-zh="我给 ImageGen 的提示词是什么？">What did I actually ask ImageGen?</h2>
+    <p data-zh="这是浪画左上角的一块。我把原画裁片交给 ImageGen 做参考，再用 Codex 写的配准程序，把返回的新笔触对齐到原画。">This is the top-left corner of the wave. I gave ImageGen the crop as a reference, then used a registration script built with Codex to place its new brushwork.</p>
+  </header>
+  <div class="platebody">
+    <div class="tiletrip"><figure><img src="making-of-src/art/tile-input.webp" alt="The original top-left 668 by 558 crop"><figcaption><b data-zh="输入裁片">Reference crop</b><span>668 × 558 px</span></figcaption></figure>
+      <figure><img src="making-of-src/art/tile-repaint.webp" alt="Raw ImageGen repaint of the same region"><figcaption><b data-zh="ImageGen 返回图">ImageGen repaint</b><span data-zh="配准前">Before registration</span></figcaption></figure>
+      <figure><img src="making-of-src/art/tile-registered.webp" alt="Corresponding box in the final registered master texture"><figcaption><b data-zh="合成后的贴图">Registered result</b><span data-zh="取自最终材质">Cut from the final map</span></figcaption></figure></div>
+    <div class="prompt-note"><b data-zh="浪壁局部的原始提示词节选">From the actual wave prompt</b>
+      <blockquote lang="en">“Use the entire attached crop as the exact registration template.”</blockquote>
+      <blockquote lang="en">“crisp bristle splits following each existing stroke, thin broken knife ridges on the gold”</blockquote>
+      <p data-zh="我要求沿用原画的边界，只补每一笔内部缺失的细节。这样镜头掠过新画时，浪的轮廓仍与周围相接。">The borders register the tile with its neighbours. Inside each brushstroke, the prompt asks for bristle splits and broken gold ridges.</p></div>
+    <div class="registration"><div><strong>939</strong><b data-zh="用于配准的匹配内点">matched inliers</b></div><div><strong>0.31 px</strong><b data-zh="粗配准后的中位光流位移">median residual flow</b></div><p data-zh="这两个数都来自这一块。先用 SIFT 特征对齐，再用光流估计还需移动多少个原图像素。">For this tile, SIFT matched the landmarks. Optical flow measured the remaining local adjustment in source pixels.</p></div>
+    <div class="textband"><b data-zh="自己跑到同一帧">Try the same shot</b><p data-zh="打开开源场景，在浏览器控制台运行下面一行，跳到第 1030 帧。原画、十二张补画、裁片坐标与配准代码都在仓库里。">Run this in the scene’s browser console for frame 1030. The repo includes the references, full prompts, crop windows and registration code.</p><code>seek(1030 / 60)</code></div>
+  </div>
+</article>
+<article class="plate timingcard" id="time-sheet" aria-labelledby="time-title">
+  <header class="platehead"><div class="folio"><b>RIPTIDE <span>/</span> <em data-zh="拍点与导出">Timing &amp; rendering</em></b><span class="page-num">06 <i>/ 06</i></span></div>
+    <h2 id="time-title" data-zh="怎样把整场飞行锁在拍点上？">One clock for flight and sound</h2>
+    <p data-zh="我从 Suno 配乐标出 56 个拍点，选了 17 个动作提示。相机、翅膀和布景都读取同一个时间 t。">I marked 56 beats and picked 17 action cues from the Suno score. The camera, wings and set all read one time value.</p>
+  </header>
+  <div class="platebody">
+    <figure class="waveplot"><div class="plothead"><strong data-zh="成片配乐波形">Studio score waveform</strong><span>127 BPM · 26.5 s</span></div><canvas id="waveplot" width="1500" height="152" aria-label="Measured waveform with beat ticks and three cue markers"></canvas><div class="plotlegend"><span>0 s</span><span data-zh="细刻线是拍点，黄线是下方三个动作">Ticks are beats. Gold marks the three cues below.</span><span>26.5 s</span></div></figure>
+    <div class="cueframes"><figure><img src="making-of-src/art/frame-print.webp" alt="Stamped page frame"><figcaption><b>10.53 s</b><span data-zh="折页套印">Stamp the pages</span></figcaption></figure><figure><img src="making-of-src/art/frame-rift.webp" alt="Bank into the crack"><figcaption><b>14.78 s</b><span data-zh="收翼穿缝">Tuck the wings</span></figcaption></figure><figure><img src="making-of-src/art/frame-crest.webp" alt="Paint curling off the sun"><figcaption><b>20.95 s</b><span data-zh="浪壁剥开">Peel the wave</span></figcaption></figure></div>
+    <div class="pipeline"><b data-zh="同一时刻必须能重画">Make every frame reproducible</b><p data-zh="seek(t) 从时间重算姿态、相机和布景。Chrome 在 72° 快门内取四个子帧并平均，快速掠过时仍保留刀痕。">seek(t) reconstructs the pose, camera and set. Chrome averages four samples over a 72° shutter to keep the cuts legible during fast flybys.</p><code>26.5 s × 60 fps × 4 samples = 6,360 renders</code></div>
+    <div class="recipe two"><div><b>WebCodecs → FFmpeg</b><p data-zh="浏览器编码 H.264 画面，FFmpeg 合入 48 kHz 立体声 AAC。输出 1590 帧的 4K 循环。">Encode H.264 in the browser and mux 48 kHz stereo AAC in FFmpeg. That gives a 1,590-frame 4K loop.</p></div>
+    <div><b data-zh="用成片做检查">Check the encoded movie</b><p data-zh="完整解码，核对全部时间戳与首尾接缝。17 个声音提示均与源音轨相差 0 个采样。">Decode every frame and check the timestamps and loop seam. All 17 audio cues align with the source to the sample.</p></div></div>
+  </div>
+</article>
+</div></div></div>
+</main>
+<dialog id="inspect">
+  <div class="dialog-bar"><span id="modal-kicker"></span><button id="close" aria-label="Close" data-aria="close">×</button></div>
+  <h2 id="modal-title"></h2><figure id="view"></figure>
+  <div class="range-row" hidden><label for="wipe" data-t="wipe">Compare the same frame</label><input id="wipe" type="range" min="0" max="100" value="50" data-aria="wipe"></div>
+  <p id="modal-text"></p>
+  <div class="modal-actions"><button id="prev" data-t="prev">Previous</button><button id="next" data-t="next">Next</button><a id="jump" href="index.html" data-t="jump">Play from here</a></div>
+</dialog>
+<script>const PICTURES={"tear": "making-of-src/art/frame-tear.webp", "fold": "making-of-src/art/frame-print.webp", "bank": "making-of-src/art/frame-rift.webp", "peel": "making-of-src/art/frame-return.webp", "plates": ["making-of-src/art/plate-dawn.webp", "making-of-src/art/plate-strata.webp", "making-of-src/art/plate-tide.webp"]}; const FILM_URL='index.html'; const COPY={
+  "title1": [
+    "I built a tunnel",
+    "我用三张画"
+  ],
+  "title2": [
+    "out of paint.",
+    "搭了一条隧道。"
+  ],
+  "section": [
+    "Inside the 3D set",
+    "拆开这条隧道"
+  ],
+  "tear": [
+    "Tear the sky",
+    "撕开天空"
+  ],
+  "tearShort": [
+    "Split the sky into three sheets.",
+    "把天空拆成三张画页。"
+  ],
+  "fold": [
+    "Hinge 22 pages",
+    "翻动 22 张折页"
+  ],
+  "foldShort": [
+    "Print four wing poses.",
+    "套印四种扑翼姿势。"
+  ],
+  "bank": [
+    "Bank the bird",
+    "让燕子侧身"
+  ],
+  "bankShort": [
+    "Tuck into the ink slit.",
+    "侧身收翼穿过墨缝。"
+  ],
+  "peel": [
+    "Peel the wave",
+    "剥开浪壁"
+  ],
+  "peelShort": [
+    "Uncurl the painted wave.",
+    "让巨浪剥成长笔触。"
+  ],
+  "artTitle": [
+    "Three source paintings",
+    "三张平面原画"
+  ],
+  "artShort": [
+    "ImageGen painted the sky, canyon and wave. I mapped each onto the set.",
+    "用 ImageGen 画出山景、岩层和巨浪，再把画铺进三维场景。"
+  ],
+  "detailTitle": [
+    "Repainting for 4K",
+    "为 4K 补画笔触"
+  ],
+  "detailShort": [
+    "I used ImageGen to repaint 12 close-ups. The gold ridges hold up in flight.",
+    "用 ImageGen 分 12 块补画。飞近时，金色浪脊上仍看得见刀痕。"
+  ],
+  "credits": [
+    "Swallow mesh · Tripo   /   Rig · Blender   /   Score · Suno",
+    "燕子模型 · Tripo　/　骨骼绑定 · Blender　/　成片配乐 · Suno"
+  ],
+  "influence": [
+    "Projection inspired by Max Vedel’s Paris Freestyle (@mxvdl).",
+    "投影手法受 Max Vedel（@mxvdl）的 Paris Freestyle 启发。"
+  ],
+  "before": [
+    "First cut",
+    "上一版"
+  ],
+  "after": [
+    "Final cut",
+    "本版"
+  ],
+  "tearBody": [
+    "I started with a flat sun print. Three leaves sample the same part of the painting at their shared edges. They peel in different directions, exposing the first row of carved gates.",
+    "开场只有一张平展的日轮版画。我让三张画页在接缝处连续取色，然后分别向外掀开，露出后面的第一排木刻门框。"
+  ],
+  "foldBody": [
+    "In Three.js I hinged eleven leaves on each side. I took four impressions of the actual bird at different moments in its wingbeat and stamped them into the moving pages.",
+    "我在 Three.js 里给左右两侧各安装 11 张折页，从燕子真实的扑翼动作取四个姿势，再把它们套印到转动的页上。"
+  ],
+  "bankBody": [
+    "I rigged the Tripo swallow in Blender. The bird points along the flight path, while the wings and tail move independently. The rig banks and tucks as the two ink walls close in.",
+    "燕子网格来自 Tripo，我在 Blender 里绑定翅膀和尾羽。喙尖朝着航线，左右翼可以独立运动。两面墨墙合拢时，它随航线侧倾并收翼。"
+  ],
+  "peelBody": [
+    "I bent the painted wave into a hollow barrel around the camera. Its lip rolls overhead, then the wall separates into long strokes and opens onto the same sun that started the loop.",
+    "我把蓝金色浪画弯成中空的浪腹，让镜头从里面穿过。浪唇从头顶卷过，浪壁随后剥成长笔触，远处重新出现开场的日轮。"
+  ],
+  "artBody": [
+    "These are the three flat ImageGen paintings from the project. The sky becomes three leaves, the strata supply the gates and hinged pages, and the blue painting wraps the inside of the wave.",
+    "这是工程里的三张 ImageGen 平面原画。山景被裁成三张可掀开的画页，岩层铺到门框和折页上，蓝金色的浪画则沿浪腹内侧展开。"
+  ],
+  "detailBody": [
+    "Both crops come from frame 1030 of a 4K export. The first used 1672 × 941 paintings. I repainted six wave regions, four rock regions and two sky regions, then registered them into three 6688 × 3764 textures. Drag to compare the gold edge.",
+    "两边都截自 4K 成片第 1030 帧（从零计数）。第一版原画是 1672 × 941。我分别补绘六块浪壁、四块岩层和两块山景，对齐后制成三张 6688 × 3764 的贴图。拖动滑杆可以比较同一处金边。"
+  ],
+  "modelAlt": [
+    "Illustrated cutaway of the torn sun print, hinged pages, closing ink walls and hollow wave.",
+    "隧道剖面示意图，从撕开的日轮版画、翻转的折页和收紧的墨缝，一直延伸到中空的浪腹。"
+  ],
+  "proofs": [
+    "Production materials",
+    "工程素材"
+  ],
+  "zoom": [
+    "Larger text",
+    "大字"
+  ],
+  "fit": [
+    "Standard text",
+    "标准字"
+  ],
+  "save": [
+    "Save PNG",
+    "保存长图"
+  ],
+  "watch": [
+    "Play film",
+    "播放作品"
+  ],
+  "close": [
+    "Close",
+    "关闭"
+  ],
+  "prev": [
+    "Previous",
+    "上一处"
+  ],
+  "next": [
+    "Next",
+    "下一处"
+  ],
+  "jump": [
+    "Play from here",
+    "从这里播放"
+  ],
+  "wipe": [
+    "Compare the same frame",
+    "对比同一帧"
+  ],
+  "still": [
+    "Film frame",
+    "成片画面"
+  ],
+  "source": [
+    "Original artwork",
+    "真实原画"
+  ],
+  "crop": [
+    "4K film crops · 17.17 s",
+    "4K 成片原尺寸裁片 · 17.17 秒"
+  ],
+  "skyAlt": [
+    "Flat painting of the sun and mountain ridges",
+    "太阳与山脊的平面画"
+  ],
+  "rockAlt": [
+    "Flat woodcut of canyon strata",
+    "岩层木刻平面画"
+  ],
+  "waveAlt": [
+    "Flat blue and gold wave painting",
+    "蓝金色浪壁平面画"
+  ]
+}; const PLOTS={"amplitude":[0.0004,0.0001,0.1634,0.1375,0.076,0.0539,0.116,0.0521,0.0356,0.0698,0.23,0.1178,0.0945,0.0682,0.1228,0.1852,0.2049,0.1395,0.0791,0.1225,0.128,0.2316,0.1262,0.1097,0.1054,0.2488,0.1377,0.1978,0.1892,0.2,0.2248,0.213,0.1832,0.1539,0.134,0.1372,0.2005,0.1512,0.2272,0.1735,0.2821,0.1852,0.2187,0.1989,0.1828,0.2511,0.2023,0.1117,0.076,0.2927,0.2284,0.1738,0.1197,0.255,0.1977,0.2932,0.1291,0.2849,0.2337,0.2314,0.1596,0.1994,0.2591,0.2066,0.149,0.115,0.301,0.0904,0.0817,0.2102,0.2811,0.1706,0.2292,0.1988,0.1861,0.2766,0.2416,0.1748,0.107,0.277,0.1139,0.2891,0.1172,0.2124,0.2347,0.2916,0.2286,0.231,0.2421,0.1836,0.28,0.2444,0.2458,0.1403,0.1468,0.1454,0.2501,0.1514,0.1385,0.2894,0.2007,0.1873,0.1732,0.203,0.2266,0.2366,0.2221,0.3108,0.2607,0.2715,0.2271,0.3022,0.2506,0.267,0.2784,0.2563,0.2051,0.2061,0.1897,0.1808,0.1846,0.1502,0.3538,0.285,0.2973,0.2591,0.278,0.2385,0.2656,0.3176,0.3357,0.2601,0.1574,0.2673,0.2551,0.2859,0.173,0.3508,0.2781,0.2287,0.3023,0.3287,0.28,0.2714,0.3402,0.3279,0.2801,0.1704,0.3051,0.307,0.2873,0.2304,0.3248,0.2463,0.2966,0.2291,0.3078,0.2347,0.334,0.3179,0.1796,0.301,0.3193,0.2816,0.1527,0.247,0.1745,0.3292,0.2764,0.3064,0.3183,0.2909,0.2026,0.2477,0.3133,0.2953,0.2528,0.2418,0.3245,0.2504,0.2666,0.2441,0.3273,0.2926,0.2381,0.2124,0.2142,0.1921,0.1905,0.3299,0.2742,0.2726,0.2536,0.2555,0.2605,0.2853,0.2379,0.3012,0.2946,0.2744,0.2776,0.2549,0.2586,0.2361,0.3325,0.3172,0.28,0.2834,0.2909,0.2489,0.2309,0.2211,0.3044,0.2937,0.2597,0.2866,0.2543,0.2294,0.2494,0.2814,0.2423,0.2821,0.2406,0.2733,0.2307,0.278,0.2509,0.2999,0.2676,0.2631,0.2861,0.2975,0.3021,0.2205,0.3185,0.286,0.2535,0.1911,0.2496,0.2,0.1942,0.1877,0.4087,0.36,0.3416,0.2922,0.312,0.2895,0.2928,0.3918,0.3096,0.3115,0.2873,0.3035,0.2592,0.3871,0.3673,0.3466,0.2892,0.3372,0.4061,0.419,0.3979,0.3451,0.3941,0.3319,0.3017,0.2943,0.3411,0.3156,0.3261,0.3195,0.4369,0.3765,0.2896,0.3111,0.3917,0.3573,0.2982,0.4075,0.2996,0.2911,0.3486,0.3344,0.24,0.3645,0.2949,0.3457,0.2867,0.3542,0.3817,0.4011,0.3449,0.3434,0.3922,0.3319,0.3395,0.3497,0.3201,0.3034,0.346,0.3087,0.4094,0.3737,0.3273,0.2762,0.2547,0.2479,0.2638,0.4207,0.3076,0.3123,0.3366,0.2714,0.242,0.3735,0.3498,0.3195,0.3124,0.3473,0.3541,0.4002,0.3644,0.3494,0.3572,0.2947,0.3206,0.3083,0.3596,0.3381,0.3373,0.3313,0.4521,0.3619,0.3691,0.2963,0.3773,0.3522,0.3943,0.3755,0.2906,0.3112,0.3657,0.3595,0.2779,0.3608,0.3353,0.3333,0.319,0.3187,0.4087,0.4041,0.3562,0.3318,0.4094,0.3318,0.3625,0.3555,0.3578,0.2787,0.3555,0.3323,0.3953,0.3543,0.3255,0.3123,0.3341,0.302,0.287,0.3671,0.3767,0.3365,0.2807,0.3344,0.2859,0.2879,0.2859,0.3037,0.3,0.2931,0.34,0.3062,0.3172,0.2759,0.3675,0.2695,0.2506,0.2474,0.3328,0.3007,0.2968,0.2942,0.2986,0.2867,0.2619,0.2774,0.2967,0.2879,0.2686,0.3196,0.2869,0.2883,0.2608,0.323,0.2901,0.2815,0.2776,0.3025,0.2981,0.2937,0.2721,0.3034,0.3037,0.2856,0.3782,0.2611,0.3562,0.2488,0.333,0.2935],"beats":[0.16698,0.63877,1.11023,1.5826,2.05367,2.52562,2.9966,3.46867,3.94019,4.41221,4.88373,5.3556,5.82735,6.29908,6.77144,7.24296,7.71503,8.18715,8.65925,9.13139,9.60371,10.07575,10.54854,11.02062,11.49312,11.96548,12.43829,12.91052,13.38358,13.85656,14.32944,14.80192,15.27519,15.74777,16.22048,16.69327,17.16588,17.63844,18.111,18.58358,19.05594,19.52831,20.001,20.47373,20.94656,21.41948,21.89206,22.3646,22.83794,23.31102,23.7839,24.25708,24.73104,25.2044,25.6775,26.15112],"cues":{"birth":0.131,"release":0.619,"runup":3.449,"approach":5.805,"print":7.695,"inkSnap":10.531,"brake":12.895,"break":13.367,"coil":14.781,"oil":15.279,"climb":17.171,"sweep":19.065,"crest":20.953,"sun":22.845,"lastKick":23.311,"imprint":24.711,"end":26.131},"regions":{"tide-00":[0,0,668,558],"tide-01":[502,0,1170,558],"tide-02":[1004,0,1672,558],"tide-10":[0,383,668,941],"tide-11":[502,383,1170,941],"tide-12":[1004,383,1672,941],"strata-00":[0,0,962,563],"strata-01":[710,0,1672,563],"strata-10":[0,378,962,941],"strata-11":[710,378,1672,941],"dawn-0":[0,170,950,941],"dawn-1":[720,168,1672,941]}};</script>
+<script>'use strict';
+(() => {
+  const byId=id=>document.getElementById(id);
+  const sceneKeys=['tear','fold','bank','peel','art','detail'];
+  const times={tear:37/60,fold:632/60,bank:887/60,peel:1286/60};
+  const headings={tear:'tear',fold:'fold',bank:'bank',peel:'peel',art:'artTitle',detail:'detailTitle'};
+  const thumb={tear:'tear',fold:'fold',bank:'bank',peel:'peel'};
+  const nav=byId('inspect'),view=byId('view'),reader=byId('scroll-area');
+  const isExport=new URLSearchParams(location.search).has('export');
+  let lang=new URLSearchParams(location.search).get('lang')==='zh'?1:0,zoom=false,active=null;
+  const t=key=>COPY[key][lang];
+  document.documentElement.classList.add(isExport?'export':'reading');
+  let inspected=null;
+  function resize(){
+    if(!isExport){
+      document.documentElement.classList.toggle('large-type',zoom);
+      return;
+    }
+    const s=isExport?1:(zoom?Math.max(1,reader.clientWidth/800):reader.clientWidth/800);
+    const box=byId('paper-size'),book=byId('book');
+    box.style.width=(800*s)+'px';box.style.height=(book.offsetHeight*s)+'px';
+    book.style.transform='scale('+s+')';
+  }
+  const bilingual=[...document.querySelectorAll('[data-zh]')].map(el=>[el,el.textContent,el.dataset.zh]);
+  function localize(){
+    document.documentElement.lang=lang?'zh-CN':'en';
+    bilingual.forEach(([el,en,zh])=>{el.textContent=lang?zh:en;});
+    document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t(el.dataset.t));
+    document.querySelectorAll('[data-alt]').forEach(el=>el.alt=t(el.dataset.alt));
+    document.querySelectorAll('[data-aria]').forEach(el=>el.setAttribute('aria-label',t(el.dataset.aria)));
+    byId('en').setAttribute('aria-pressed',String(!lang));byId('zh').setAttribute('aria-pressed',String(!!lang));
+    byId('zoom').textContent=t(zoom?'fit':'zoom');
+    if(active==='asset' && inspected)populateAsset(inspected);else if(active)populate(active);
+    resize();
+  }
+  function picture(src,alt){
+    const im=new Image();im.src=src;im.alt=alt;return im;
+  }
+  function wipe(){
+    const n=Number(byId('wipe').value),front=view.querySelector('.front'),split=view.querySelector('.split');
+    if(front){front.style.clipPath='inset(0 '+(100-n)+'% 0 0)';split.style.left=n+'%';}
+  }
+  function populateAsset(img){
+    active='asset';inspected=img;nav.classList.add('big-inspect');
+    const cap=img.closest('figure')?.querySelector('figcaption');
+    const title=cap?.querySelector('b')?.textContent||img.alt;
+    byId('modal-kicker').textContent=lang?'原始工程图':'Production image';
+    byId('modal-title').textContent=title;
+    byId('modal-text').textContent=cap?.querySelector('span')?.textContent||'';
+    byId('jump').hidden=true;document.querySelector('.range-row').hidden=true;
+    view.className='';view.replaceChildren(picture(img.currentSrc||img.src,title));
+  }
+  function populate(scene){
+    nav.classList.remove('big-inspect');
+    active=scene;const timing=times[scene];
+    byId('modal-title').textContent=t(headings[scene]);
+    byId('modal-text').textContent=t(scene+'Body');
+    byId('modal-kicker').textContent=timing===undefined?t(scene==='art'?'source':'crop'):t('still')+'  /  '+timing.toFixed(2)+' s';
+    byId('jump').hidden=timing===undefined;
+    if(timing!==undefined)byId('jump').href=FILM_URL+(FILM_URL.endsWith('.mp4')?'#t=':'?t=')+timing.toFixed(4);
+    document.querySelector('.range-row').hidden=scene!=='detail';
+    view.replaceChildren();view.className='';
+    if(scene==='art'){
+      view.classList.add('modal-triplet');
+      PICTURES.plates.forEach((src,i)=>view.append(picture(src,t(['skyAlt','rockAlt','waveAlt'][i]))));
+    }else if(scene==='detail'){
+      const [old,now]=document.querySelectorAll('.crops img');
+      view.append(picture(now.src,t('after')));
+      const left=picture(old.src,t('before'));left.className='front';view.append(left);
+      const rule=document.createElement('i');rule.className='split';view.append(rule);
+      byId('wipe').value=50;wipe();
+    }else{
+      const img=picture(PICTURES[thumb[scene]],t(headings[scene]));img.width=1920;img.height=1080;view.append(img);
+    }
+  }
+  function open(scene){populate(scene);nav.showModal();byId('close').focus();}
+  function move(step){populate(sceneKeys[(sceneKeys.indexOf(active)+sceneKeys.length+step)%sceneKeys.length]);}
+  document.querySelectorAll('[data-scene]').forEach(el=>el.onclick=()=>open(el.dataset.scene));
+  if(!isExport)document.querySelectorAll('article figure img').forEach(img=>{
+    if(img.closest('button'))return;
+    img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-haspopup','dialog');
+    const show=()=>{populateAsset(img);nav.showModal();byId('close').focus();};
+    img.addEventListener('click',show);
+    img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}});
+  });
+  nav.addEventListener('close',()=>{active=null;inspected=null;nav.classList.remove('big-inspect');});
+  nav.addEventListener('click',e=>{if(e.target===nav){const r=nav.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)nav.close();}});
+  byId('prev').onclick=()=>move(-1);byId('next').onclick=()=>move(1);
+  byId('close').onclick=()=>nav.close();byId('wipe').oninput=wipe;
+  byId('en').onclick=()=>{lang=0;localize();};byId('zh').onclick=()=>{lang=1;localize();};
+  byId('zoom').onclick=()=>{zoom=!zoom;byId('zoom').textContent=t(zoom?'fit':'zoom');resize();};
+  const sheets=[...byId('book').children],chapter=byId('chapter-nav');
+  chapter.onchange=()=>{
+    if(chapter.value==='repo'){location.href='https://github.com/Andy-Huang-SZU/riptide-flight';return;}
+    sheets[Number(chapter.value)].scrollIntoView({block:'start'});
+  };
+  let scrollPending=false;
+  window.addEventListener('scroll',()=>{
+    if(scrollPending || isExport)return;
+    scrollPending=true;
+    requestAnimationFrame(()=>{
+      const threshold=Math.min(window.innerHeight*.45,300);
+      const index=sheets.reduce((n,s,i)=>s.getBoundingClientRect().top<threshold?i:n,0);
+      chapter.value=String(index);scrollPending=false;
+    });
+  },{passive:true});
+  function drawRegions(){
+    const c=byId('regions'),g=c.getContext('2d');
+    const boxes=Object.entries(PLOTS.regions).filter(([key])=>key.startsWith('tide-'));
+    const sx=c.width/1672,sy=c.height/941;
+    boxes.forEach(([,box],i)=>{
+      const [l,t,r,b]=box;
+      const x=l*sx+2,y=t*sy+2,w=(r-l)*sx-4,h=(b-t)*sy-4;
+      g.lineWidth=6;g.strokeStyle='#18323de0';g.strokeRect(x,y,w,h);
+      g.lineWidth=3;g.strokeStyle='#ffe2a3';g.strokeRect(x,y,w,h);
+      const px=x+w/2,py=y+h/2;
+      g.fillStyle='#19333e';g.beginPath();g.arc(px,py,23,0,2*Math.PI);g.fill();
+      g.strokeStyle='#ffdb87';g.lineWidth=2;g.stroke();
+      g.fillStyle='#fff4d9';g.font='600 28px sans-serif';
+      g.textAlign='center';g.textBaseline='middle';g.fillText(String(i+1),px,py+1);
+    });
+  }
+  function drawScore(){
+    const c=byId('waveplot'),g=c.getContext('2d'),w=c.width,h=c.height;
+    const x=t=>t/26.5*(w-1);
+    g.fillStyle='#e3dcf2';g.fillRect(0,0,w,h);
+    for(const beat of PLOTS.beats){g.fillStyle='#705b89';g.fillRect(x(beat),h-14,2,14);}
+    const amp=PLOTS.amplitude,ampMax=Math.max(...amp),step=w/amp.length,mid=(h-10)/2;
+    amp.forEach((a,i)=>{
+      const extent=a/ampMax*(mid-5);
+      g.fillStyle='#725ba2';g.fillRect(i*step,mid-extent,Math.max(1,step-0.6),Math.max(1,extent*2));
+    });
+    for(const cue of ['inkSnap','coil','crest']){
+      const px=x(PLOTS.cues[cue]);g.fillStyle='#694317';g.fillRect(px-3,0,7,h);g.fillStyle='#ffcf4c';g.fillRect(px-1,0,3,h);
+      g.beginPath();g.moveTo(px-8,0);g.lineTo(px+8,0);g.lineTo(px,10);g.fill();
+    }
+  }
+  drawRegions();drawScore();
+  if(isExport)reader.style.width='800px';
+  new ResizeObserver(resize).observe(reader);localize();
+  window.posterReady=Promise.all([document.fonts.ready,...[...document.querySelectorAll('article img')].map(i=>i.decode())]).then(()=>{resize();return true;});
+})();
+</script>
+</body></html>
